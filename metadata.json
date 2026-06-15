@@ -1,0 +1,6 @@
+{
+  "name": "Briteman Electronics",
+  "description": "Premium electronics retail and wholesale marketplace in Mbabane, Eswatini. Authorized laptop, desktop, printer, and accessories supplier.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
