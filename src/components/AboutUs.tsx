@@ -45,7 +45,7 @@ export default function AboutUs() {
             Founded with a single core mission—to bring world-class hardware standards to Mbabane shoppers—<b>Briteman Services</b> (branded to our clients as <b>Briteman Electronics</b>) has grown to become Eswatini's most trustworthy computer supply partner. 
           </p>
           <p className="text-xs text-slate-500 leading-relaxed">
-            By avoiding unreliable gray imports and maintaining absolute commercial transparency, we construct durable procurement channels for government agencies, private corporate suites, leading colleges, and local retail shoppers. Our highly trained Mbabane engineers inspect each device, certify refurbishments, and setup customized software to ensure your office transitions seamlessly.
+            By avoiding unreliable gray imports and maintaining absolute commercial transparency, we construct durable procurement channels for government agencies, private corporate suites, leading colleges, and local retail shoppers. Our highly trained Mbabane engineers inspect each device, certify brand new and premium pre-owned conditions, and setup customized software to ensure your office transitions seamlessly.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -97,7 +97,8 @@ export default function AboutUs() {
                 <div className="text-slate-500 mt-1 space-y-0.5">
                   <p>📅 Monday - Friday: <b className="font-semibold text-slate-800 dark:text-white font-mono">08:00 AM - 05:00 PM</b></p>
                   <p>📅 Saturday: <b className="font-semibold text-slate-800 dark:text-white font-mono">08:30 AM - 01:00 PM</b></p>
-                  <p>📅 Sunday & Public Holidays: <span className="text-red-500 font-semibold uppercase">Closed</span></p>
+                  <p>📅 Sunday: <span className="text-red-500 font-semibold uppercase">Closed</span></p>
+                  <p>📅 Public Holidays: <b className="font-semibold text-slate-800 dark:text-white font-mono">08:00 AM - 02:00 PM</b></p>
                 </div>
               </div>
             </div>

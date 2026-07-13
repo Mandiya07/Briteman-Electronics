@@ -310,7 +310,7 @@ export default function CompareDrawer({
                         {[
                           { feat: 'Direct Factory Genuine License', ok: true },
                           { feat: 'Physical Diagnostic Hardware warranty', ok: true },
-                          { feat: p.condition === 'New' ? 'Factory Brand New Seal' : 'Grade A Certified-Refurbished Diagnostics', ok: true },
+                          { feat: p.condition === 'New' ? 'Factory Brand New Seal' : 'Grade A Certified Pre-Owned Diagnostics', ok: true },
                           { feat: p.availability === 'In Stock' ? 'Mbabane Showroom In-Stock (Immediate Pickup)' : 'Limited Stock / Reserves Check Required', ok: p.availability !== 'Out of Stock' }
                         ].map((f, idx) => (
                           <div key={idx} className="flex items-start space-x-1.5">

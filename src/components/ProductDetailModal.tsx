@@ -279,7 +279,7 @@ export default function ProductDetailModal({
 Please confirm showroom stock availability.`)}`;
 
   function pConditionLabel(p: Product) {
-    return p.condition === 'New' ? 'Brand New Factory Sealed' : 'Grade-A Certified Refurbished';
+    return p.condition === 'New' ? 'Brand New Factory Sealed' : 'Grade-A Certified Pre-Owned';
   }
 
   const handleShareQuoteWhatsApp = () => {

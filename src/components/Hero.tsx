@@ -182,11 +182,11 @@ export default function Hero({ onTabChange }: HeroProps) {
           <p className="text-slate-400 text-sm font-semibold uppercase tracking-widest text-center mb-6">
             Authorized Brands We Distribute
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-75 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
             {clientBrands.map((b) => (
-              <div key={b.name} className="flex items-center space-x-2 text-slate-300">
-                <img src={b.logo} alt={b.name} className="h-6 object-contain filter invert bg-transparent opacity-90" />
-                <span className="font-semibold font-display tracking-wider text-sm">{b.name}</span>
+              <div key={b.name} className="flex items-center space-x-2.5 bg-slate-800/80 hover:bg-slate-800 px-4 py-2.5 rounded-2xl border border-slate-700 transition">
+                <img src={b.logo} alt={b.name} className="h-7 w-7 object-contain bg-white rounded-md p-0.5 shadow-sm" />
+                <span className="font-bold font-display tracking-wider text-sm text-white">{b.name}</span>
               </div>
             ))}
           </div>

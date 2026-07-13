@@ -146,19 +146,19 @@ export default function Homepage({
       try { return JSON.parse(saved); } catch (e) { /* fallback */ }
     }
     return [
-      { name: 'HP', desc: 'Enterprise Systems' },
-      { name: 'Dell', desc: 'Secure Workstations' },
-      { name: 'Lenovo', desc: 'ThinkPad Durability' },
-      { name: 'Apple', desc: 'High-End Innovation' },
-      { name: 'Acer', desc: 'Outstanding Value' },
-      { name: 'Asus', desc: 'Gaming Powerhouses' },
-      { name: 'Samsung', desc: 'Display & Mobile' },
-      { name: 'Canon', desc: 'Legendary Imaging' },
-      { name: 'Epson', desc: 'EcoTank Ink champions' },
-      { name: 'Logitech', desc: 'Smart Peripherals' },
-      { name: 'Toshiba', desc: 'Reliable Compute' },
-      { name: 'Seagate', desc: 'Dense Storage HDDs' },
-      { name: 'Western Digital', desc: 'High-Speed M.2 SSDs' }
+      { name: 'HP', desc: 'Enterprise Systems', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Hp_colored_svg_social-512.png' },
+      { name: 'Dell', desc: 'Secure Workstations', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Dell_colored_svg_social-512.png' },
+      { name: 'Lenovo', desc: 'ThinkPad Durability', logo: 'https://cdn.iconfinder.com/data/icons/social-media-auto-filled-lines-vol-2/434/lenovo-512.png' },
+      { name: 'Apple', desc: 'High-End Innovation', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Apple_colored_svg_social-512.png' },
+      { name: 'Acer', desc: 'Outstanding Value', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Acer_colored_svg_social-512.png' },
+      { name: 'Asus', desc: 'Gaming Powerhouses', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Asus_colored_svg_social-512.png' },
+      { name: 'Samsung', desc: 'Display & Mobile', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Samsung_colored_svg_social-512.png' },
+      { name: 'Canon', desc: 'Legendary Imaging', logo: 'https://cdn.iconfinder.com/data/icons/photo-video-color/64/camera-dslr-photography-lens-shutter-aperture-zoom-professional-equipment-technology-portable-photo-512.png' },
+      { name: 'Epson', desc: 'EcoTank Ink champions', logo: 'https://cdn.iconfinder.com/data/icons/academic-disciplines-color/64/art-design-technology-computer-electronics-printer-equipment-machine-office-stationery-utility-print-512.png' },
+      { name: 'Logitech', desc: 'Smart Peripherals', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Logitech_colored_svg_social-512.png' },
+      { name: 'Toshiba', desc: 'Reliable Compute', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Toshiba_colored_svg_social-512.png' },
+      { name: 'Seagate', desc: 'Dense Storage HDDs', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Seagate_colored_svg_social-512.png' },
+      { name: 'Western Digital', desc: 'High-Speed M.2 SSDs', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Western_Digital_colored_svg_social-512.png' }
     ];
   });
 
@@ -842,7 +842,7 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
               <span className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-350 px-2.5 py-1 rounded-full font-bold uppercase tracking-wider font-mono">Seasonal inventory clearance</span>
               <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white uppercase leading-tight">Back-to-School Specials</h3>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-light">
-                Outfitting school labs and computer classrooms. Specialized vouchers for refurbished Grade-A MacBooks, portable retro gaming consoles, universal power supplies, and keyboards.
+                Outfitting school labs and computer classrooms. Specialized vouchers for pre-owned Grade-A MacBooks, portable retro gaming consoles, universal power supplies, and keyboards.
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3 items-center justify-between">
@@ -890,7 +890,7 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
                 name: 'Thabo Mamba',
                 role: 'Student at Limkokwing University',
                 rating: 5,
-                text: 'As a graphics student, I needed a MacBook Air on severe budget limits. Briteman supplied me with a certified refurbished M1 MacBook. It works flawlessly and includes half a year of local Mbabane warranty. Absolutely incredible store!',
+                text: 'As a graphics student, I needed a MacBook Air on severe budget limits. Briteman supplied me with a certified pre-owned M1 MacBook. It works flawlessly and includes half a year of local Mbabane warranty. Absolutely incredible store!',
                 desc: 'Retail Student shopper'
               }
             ].map((testi, idx) => (

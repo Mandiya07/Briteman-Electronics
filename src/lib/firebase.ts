@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from 'firebase/auth';
-import { getFirestore, doc, getDocFromServer } from 'firebase/firestore';
+import { getFirestore, doc, getDocFromServer, getDoc, setDoc } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
@@ -12,6 +12,40 @@ export const googleProvider = new GoogleAuthProvider();
 getRedirectResult(auth).catch((error) => {
   console.error('Redirect result error:', error);
 });
+
+export async function getCloudLogo(): Promise<string | null> {
+  try {
+    const snap = await getDoc(doc(db, 'app_settings', 'branding'));
+    if (snap.exists()) {
+      const data = snap.data();
+      if (data.customLogoUrl) {
+        localStorage.setItem('briteman_custom_logo', data.customLogoUrl);
+        return data.customLogoUrl;
+      }
+    }
+  } catch (e) {
+    console.error('Error fetching cloud logo:', e);
+  }
+  return localStorage.getItem('briteman_custom_logo');
+}
+
+export async function saveCloudLogo(logoUrl: string): Promise<void> {
+  localStorage.setItem('briteman_custom_logo', logoUrl);
+  try {
+    await setDoc(doc(db, 'app_settings', 'branding'), { customLogoUrl: logoUrl, updatedAt: new Date().toISOString() }, { merge: true });
+  } catch (e) {
+    console.error('Error saving cloud logo:', e);
+  }
+}
+
+export async function removeCloudLogo(): Promise<void> {
+  localStorage.removeItem('briteman_custom_logo');
+  try {
+    await setDoc(doc(db, 'app_settings', 'branding'), { customLogoUrl: '', updatedAt: new Date().toISOString() }, { merge: true });
+  } catch (e) {
+    console.error('Error removing cloud logo:', e);
+  }
+}
 
 export async function loginWithGoogle() {
   try {

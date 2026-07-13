@@ -678,7 +678,7 @@ Please let me know if this is currently available in Mbabane showroom. Thanks!`;
           <div className="space-y-2 pt-2 border-t dark:border-slate-800 text-xs">
             <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider font-mono">Seal &amp; Condition</h4>
             <div className="grid grid-cols-3 gap-1">
-              {['All', 'New', 'Refurbished'].map(cond => (
+              {['All', 'New', 'Pre-Owned'].map(cond => (
                 <button
                   id={`cond-filter-${cond}`}
                   key={cond}

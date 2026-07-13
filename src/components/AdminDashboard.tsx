@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ClipboardList, CheckCircle2, TrendingUp, Boxes, Briefcase, Plus, Percent, Trash2, Tag, Image as ImageIcon, Upload, Sparkles, RefreshCw, Award, Building, MapPin, Phone, Mail, Pencil } from 'lucide-react';
 import { Product, Order, WholesaleQuoteRequest, WholesaleProfile, Coupon } from '../types';
+import { saveCloudLogo, removeCloudLogo } from '../lib/firebase';
 
 interface AdminDashboardProps {
   products: Product[];
@@ -18,6 +19,7 @@ interface AdminDashboardProps {
   onCreateCoupon: (c: { code: string; percent: number; description: string }) => void;
   onToggleCoupon: (code: string) => void;
   onDeleteCoupon: (code: string) => void;
+  onLogout?: () => void;
 }
 
 export default function AdminDashboard({
@@ -34,7 +36,8 @@ export default function AdminDashboard({
   coupons = [],
   onCreateCoupon,
   onToggleCoupon,
-  onDeleteCoupon
+  onDeleteCoupon,
+  onLogout
 }: AdminDashboardProps) {
   
   const [activeTab, setActiveTab] = useState<'overview' | 'inventory' | 'branding' | 'brands' | 'company' | 'orders' | 'wholesale' | 'discounts' | 'services' | 'blogs'>('overview');
@@ -267,27 +270,28 @@ export default function AdminDashboard({
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => {
+      reader.onloadend = async () => {
         const result = reader.result as string;
         setCustomLogoUrl(result);
-        localStorage.setItem('briteman_custom_logo', result);
+        await saveCloudLogo(result);
         window.dispatchEvent(new Event('logo-updated'));
-        setBrandingMsg('Logo successfully uploaded and applied across all app headers and footers!');
+        setBrandingMsg('Logo successfully uploaded and synced to cloud across all app headers and footers!');
         setTimeout(() => setBrandingMsg(''), 5000);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSaveLogoUrl = () => {
-    localStorage.setItem('briteman_custom_logo', customLogoUrl);
+  const handleSaveLogoUrl = async () => {
+    setCustomLogoUrl(customLogoUrl);
+    await saveCloudLogo(customLogoUrl);
     window.dispatchEvent(new Event('logo-updated'));
-    setBrandingMsg('Logo updated successfully!');
+    setBrandingMsg('Logo updated and synced to cloud successfully!');
     setTimeout(() => setBrandingMsg(''), 4000);
   };
 
-  const handleResetLogo = () => {
-    localStorage.removeItem('briteman_custom_logo');
+  const handleResetLogo = async () => {
+    await removeCloudLogo();
     setCustomLogoUrl('');
     window.dispatchEvent(new Event('logo-updated'));
     setBrandingMsg('Logo reset to default professional vector design.');
@@ -305,7 +309,17 @@ export default function AdminDashboard({
       {/* Title */}
       <div className="flex flex-wrap justify-between items-end gap-4 pb-6 border-b border-slate-200 dark:border-slate-800 mb-8">
         <div>
-          <span className="text-xs font-black text-red-500 uppercase tracking-widest block font-mono">🔑 SYSTEM ADMINISTRATIVE COMMAND</span>
+          <div className="flex items-center space-x-3 mb-1">
+            <span className="text-xs font-black text-red-500 uppercase tracking-widest block font-mono">🔑 SYSTEM ADMINISTRATIVE COMMAND</span>
+            {onLogout && (
+              <button
+                onClick={onLogout}
+                className="text-[10px] font-bold uppercase tracking-wider text-red-600 bg-red-50 dark:bg-red-950/60 hover:bg-red-100 px-2.5 py-1 rounded-lg transition cursor-pointer border border-red-200 dark:border-red-900"
+              >
+                Sign Out (Admin)
+              </button>
+            )}
+          </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight mt-0.5">
             Briteman Electronics Admin Console
           </h2>

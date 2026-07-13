@@ -440,22 +440,23 @@ export default function App() {
 
         {activeTab === 'admin' && (
           currentUser?.email?.toLowerCase() === 'ajapresd@gmail.com' ? (
-            <AdminDashboard
-              products={productsList}
-              orders={orders}
-              quotes={quotes}
-              registrations={registrations}
-              onUpdateStock={handleUpdateStockInState}
-              onAddProduct={handleCreateProduct}
-              onEditProduct={handleEditProduct}
-              onDeleteProduct={handleDeleteProduct}
-              onApproveQuote={handleApproveQuote}
-              onApproveRegistration={handleApproveRegistration}
-              coupons={coupons}
-              onCreateCoupon={handleCreateCoupon}
-              onToggleCoupon={handleToggleCoupon}
-              onDeleteCoupon={handleDeleteCoupon}
-            />
+              <AdminDashboard
+                products={productsList}
+                orders={orders}
+                quotes={quotes}
+                registrations={registrations}
+                onUpdateStock={handleUpdateStockInState}
+                onAddProduct={handleCreateProduct}
+                onEditProduct={handleEditProduct}
+                onDeleteProduct={handleDeleteProduct}
+                onApproveQuote={handleApproveQuote}
+                onApproveRegistration={handleApproveRegistration}
+                coupons={coupons}
+                onCreateCoupon={handleCreateCoupon}
+                onToggleCoupon={handleToggleCoupon}
+                onDeleteCoupon={handleDeleteCoupon}
+                onLogout={handleLogout}
+              />
           ) : (
             <div className="max-w-md mx-auto py-20 px-6 text-center">
               <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-3xl shadow-xl space-y-6">

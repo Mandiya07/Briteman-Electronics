@@ -6,7 +6,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   discountPrice?: number;
-  condition: 'New' | 'Refurbished';
+  condition: 'New' | 'Pre-Owned';
   availability: 'In Stock' | 'Out of Stock' | 'Low Stock';
   stock: number;
   image: string;

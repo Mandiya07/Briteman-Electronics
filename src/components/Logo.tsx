@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getCloudLogo } from '../lib/firebase';
 
 interface LogoProps {
   className?: string;
@@ -10,10 +11,10 @@ export function Logo({ className = '', size = 'md', showSubtitle = true }: LogoP
   const [customLogoUrl, setCustomLogoUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem('briteman_custom_logo');
-    if (saved) {
-      setCustomLogoUrl(saved);
-    }
+    getCloudLogo().then((url) => {
+      if (url) setCustomLogoUrl(url);
+    });
+
     const handleStorageChange = () => {
       const updated = localStorage.getItem('briteman_custom_logo');
       setCustomLogoUrl(updated);
