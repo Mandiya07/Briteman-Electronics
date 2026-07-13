@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, ShoppingCart, Search, Moon, Sun, Heart, User, Sparkles, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CartItem, Product } from '../types';
+import { Logo } from './Logo';
 
 interface NavigationProps {
   currentTab: string;
@@ -71,19 +72,9 @@ export default function Navigation({
             <button 
               id="brand-logo-btn"
               onClick={() => onTabChange('home')}
-              className="flex items-center space-x-2.5 text-left cursor-pointer group"
+              className="text-left cursor-pointer group"
             >
-              <div className="bg-primary group-hover:bg-accent p-2 rounded-xl text-white transform group-hover:-rotate-3 transition-all duration-500 shadow-lg shadow-primary/25">
-                <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display font-black text-xl sm:text-2xl tracking-tighter text-slate-950 dark:text-white leading-tight block">
-                  BRITEMAN
-                </span>
-                <span className="text-accent font-mono text-[9px] font-bold tracking-[0.2em] uppercase select-none leading-none">
-                  Electronics
-                </span>
-              </div>
+              <Logo />
             </button>
           </div>
 
@@ -203,7 +194,7 @@ export default function Navigation({
           </div>
 
           {/* Mobile buttons */}
-          <div className="flex items-center md:hidden space-x-1 sm:space-x-3">
+          <div className="flex items-center lg:hidden space-x-1 sm:space-x-3">
             <button
               id="theme-toggle-mobile"
               onClick={toggleDarkMode}
@@ -243,7 +234,7 @@ export default function Navigation({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-dark-bg border-t border-slate-100 dark:border-slate-900 overflow-hidden"
+            className="lg:hidden bg-white dark:bg-dark-bg border-t border-slate-100 dark:border-slate-900 max-h-[calc(100vh-5rem)] overflow-y-auto"
           >
             <div className="px-5 py-6 space-y-6">
               {/* Mobile search bar */}

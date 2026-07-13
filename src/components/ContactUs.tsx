@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, HelpCircle, MessageSquare, CheckCircle, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, HelpCircle, MessageSquare, CheckCircle, Clock, ZoomIn, ZoomOut, Layers, Navigation, Compass, ExternalLink } from 'lucide-react';
 
 export default function ContactUs() {
   const [name, setName] = useState('');
@@ -8,6 +8,13 @@ export default function ContactUs() {
   const [subject, setSubject] = useState('Product Inquiry');
   const [message, setMessage] = useState('');
   const [success, setSuccess] = useState(false);
+
+  // Interactive map states
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [mapMode, setMapMode] = useState<'blueprint' | 'satellite' | 'streets'>('blueprint');
+  const [activePin, setActivePin] = useState<string | null>('briteman');
+  const [showDirections, setShowDirections] = useState(false);
+  const [selectedOrigin, setSelectedOrigin] = useState('Mbabane CBD (Swazi Plaza)');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +52,66 @@ export default function ContactUs() {
     }
   ];
 
+  const landmarks = [
+    {
+      id: 'briteman',
+      title: 'Briteman Electronics Showroom',
+      desc: 'Unit 10, LM Building, Somhlolo Road. Main computer & printer store.',
+      coords: { top: '50%', left: '50%' },
+      badge: 'HQ Store',
+      color: 'bg-primary text-white'
+    },
+    {
+      id: 'lilunga',
+      title: 'Lilunga House',
+      desc: 'Major corporate landmark along SRIC Route, Mbabane.',
+      coords: { top: '28%', left: '72%' },
+      badge: 'Landmark',
+      color: 'bg-amber-500 text-white'
+    },
+    {
+      id: 'sric',
+      title: 'SRIC Head Offices',
+      desc: 'Eswatini Royal Insurance Corporation complex.',
+      coords: { top: '70%', left: '25%' },
+      badge: 'Landmark',
+      color: 'bg-indigo-600 text-white'
+    }
+  ];
+
+  const directionsMap: Record<string, { time: string; distance: string; steps: string[] }> = {
+    'Mbabane CBD (Swazi Plaza)': {
+      time: '4 mins drive (1.8 km)',
+      distance: '1.8 km',
+      steps: [
+        'Head northeast from Swazi Plaza toward Somhlolo Road',
+        'Continue straight past Independence roundabout onto Somhlolo Rd',
+        'Pass Lilunga House on your right',
+        'Arrive at LM Building Unit 10 (Briteman Electronics)'
+      ]
+    },
+    'Ezulwini Valley (Corner Plaza)': {
+      time: '12 mins drive (11.4 km)',
+      distance: '11.4 km',
+      steps: [
+        'Take MR3 highway northbound toward Mbabane',
+        'Take the Mbabane city exit onto Somhlolo Road',
+        'Continue down Somhlolo Road past SRIC head offices',
+        'Briteman Electronics is on your left at LM Building Unit 10'
+      ]
+    },
+    'Manzini Bus Rank': {
+      time: '28 mins drive (32.5 km)',
+      distance: '32.5 km',
+      steps: [
+        'Join MR3 highway west toward Mbabane',
+        'Proceed through Mahwalala / Ezulwini toll corridor',
+        'Enter Mbabane via Somhlolo Road intersection',
+        'Unit 10 LM Building is located right next to Lilunga House'
+      ]
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
@@ -80,43 +147,168 @@ export default function ContactUs() {
           </div>
 
           {/* Interactive Map Block */}
-          <div className="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
+          <div className="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center space-x-1">
-                <MapPin className="h-4 w-4 text-accent" />
-                <span>Mbabane Store Location Map</span>
+              <span className="font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center space-x-1.5">
+                <Compass className="h-4 w-4 text-accent animate-spin" style={{ animationDuration: '10s' }} />
+                <span>Interactive Mbabane Map</span>
               </span>
-              <span className="text-primary font-bold">SRIC Route</span>
+              <div className="flex items-center space-x-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
+                <button
+                  onClick={() => setMapMode('blueprint')}
+                  className={`px-2 py-0.5 rounded-lg font-bold text-[10px] cursor-pointer transition ${mapMode === 'blueprint' ? 'bg-primary text-white shadow' : 'text-slate-500'}`}
+                >
+                  Blueprint
+                </button>
+                <button
+                  onClick={() => setMapMode('satellite')}
+                  className={`px-2 py-0.5 rounded-lg font-bold text-[10px] cursor-pointer transition ${mapMode === 'satellite' ? 'bg-primary text-white shadow' : 'text-slate-500'}`}
+                >
+                  Satellite
+                </button>
+              </div>
             </div>
 
-            {/* Structured CSS representation of a map since iframe maps may fail standard viewport restrictions */}
-            <div className="h-48 bg-slate-150 dark:bg-slate-950 rounded-xl relative overflow-hidden border dark:border-slate-850 flex flex-col items-center justify-center p-4">
-              <div className="absolute inset-x-0 h-4 bg-slate-250 dark:bg-slate-900 top-1/3 transform -rotate-2"></div> {/* Somhlolo Road */}
-              <div className="absolute inset-y-0 w-4 bg-slate-250 dark:bg-slate-900 left-1/3 transform -rotate-12"></div> {/* SRIC crossing Route */}
+            {/* Interactive Map Stage */}
+            <div className={`h-64 rounded-2xl relative overflow-hidden border dark:border-slate-850 flex flex-col items-center justify-center p-4 transition-all duration-300 ${
+              mapMode === 'satellite' 
+                ? 'bg-slate-950 border-emerald-900/50' 
+                : 'bg-slate-150 dark:bg-slate-900'
+            }`}>
               
-              {/* Lilunga House representation */}
-              <div className="absolute top-1/4 right-1/4 bg-slate-300 dark:bg-slate-800 border dark:border-slate-700 p-2 text-[10px] font-bold rounded shadow-sm text-slate-650">
-                🏢 Lilunga House Block
+              {/* Zoom transform container */}
+              <div 
+                className="absolute inset-0 transition-transform duration-300 flex items-center justify-center"
+                style={{ transform: `scale(${zoomLevel})` }}
+              >
+                {/* Road Grid lines */}
+                <div className={`absolute inset-x-0 h-6 top-1/3 transform -rotate-3 transition-colors ${
+                  mapMode === 'satellite' ? 'bg-slate-900/80 border-y border-emerald-500/20' : 'bg-slate-250 dark:bg-slate-850'
+                }`}>
+                  <span className="text-[9px] font-mono text-slate-400 px-3 uppercase tracking-widest">Somhlolo Road (H100)</span>
+                </div>
+
+                <div className={`absolute inset-y-0 w-6 left-1/3 transform -rotate-12 transition-colors ${
+                  mapMode === 'satellite' ? 'bg-slate-900/80 border-x border-emerald-500/20' : 'bg-slate-250 dark:bg-slate-850'
+                }`}></div>
+
+                {/* Landmarks interactive pins */}
+                {landmarks.map((l) => (
+                  <div
+                    key={l.id}
+                    onClick={() => setActivePin(l.id)}
+                    className="absolute cursor-pointer transition transform hover:scale-110 z-20"
+                    style={{ top: l.coords.top, left: l.coords.left }}
+                  >
+                    <div className={`p-2 rounded-full shadow-lg flex items-center justify-center ${l.color} ${activePin === l.id ? 'ring-4 ring-primary/40 animate-pulse' : ''}`}>
+                      <MapPin className="h-4 w-4" />
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              {/* Briteman Services Pin */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center animate-bounce">
-                <div className="bg-accent text-white p-2.5 rounded-full shadow-lg border-2 border-white scale-110">
-                  <MapPin className="h-5 w-5" />
-                </div>
-                <div className="bg-slate-950 text-white rounded px-2 py-1 text-[9px] font-bold font-display uppercase tracking-wider mt-1 shadow border border-slate-800 whitespace-nowrap">
-                  BRITEMAN SERVICES
-                </div>
+              {/* Map Floating Control Toolbar */}
+              <div className="absolute top-3 right-3 flex flex-col space-y-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur p-1 rounded-xl border dark:border-slate-800 shadow z-30">
+                <button
+                  onClick={() => setZoomLevel(prev => Math.min(prev + 0.25, 1.75))}
+                  className="p-1.5 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg cursor-pointer"
+                  title="Zoom In"
+                >
+                  <ZoomIn className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => setZoomLevel(prev => Math.max(prev - 0.25, 0.75))}
+                  className="p-1.5 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg cursor-pointer"
+                  title="Zoom Out"
+                >
+                  <ZoomOut className="h-4 w-4" />
+                </button>
               </div>
 
-              <div className="absolute bottom-2 left-2 bg-white/95 dark:bg-slate-900/95 border dark:border-slate-800 px-2 py-1 rounded text-[10px] text-left text-slate-500">
-                📍 LM Building Unit 10, Somhlolo Rd
-              </div>
+              {/* Active Landmark Popup Card overlay */}
+              {activePin && (
+                <div className="absolute bottom-3 inset-x-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur border dark:border-slate-800 p-3 rounded-xl shadow-xl z-30 text-left flex items-start justify-between space-x-2 animate-fadeIn">
+                  <div className="space-y-0.5">
+                    <div className="flex items-center space-x-2">
+                      <span className="font-bold text-xs text-slate-900 dark:text-white">
+                        {landmarks.find(l => l.id === activePin)?.title}
+                      </span>
+                      <span className="text-[9px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-mono font-bold">
+                        {landmarks.find(l => l.id === activePin)?.badge}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400">
+                      {landmarks.find(l => l.id === activePin)?.desc}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowDirections(true)}
+                    className="bg-accent hover:bg-accent-hover text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shrink-0 flex items-center space-x-1 cursor-pointer shadow"
+                  >
+                    <Navigation className="h-3 w-3" />
+                    <span>Directions</span>
+                  </button>
+                </div>
+              )}
             </div>
 
-            <div className="flex items-center space-x-1.5 text-xs text-slate-500">
-              <Clock className="h-4 w-4 text-slate-400" />
-              <span>We are situated across from the SRIC head offices next to Lilunga House.</span>
+            {/* Quick Directions Modal or Drawer Trigger */}
+            <div className="pt-2 flex flex-col space-y-2">
+              <button
+                id="open-directions-planner"
+                onClick={() => setShowDirections(!showDirections)}
+                className="w-full bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs py-2.5 px-4 rounded-xl font-bold flex items-center justify-between transition cursor-pointer"
+              >
+                <span className="flex items-center space-x-2">
+                  <Navigation className="h-4 w-4 text-primary" />
+                  <span>Route Navigation & Directions Planner</span>
+                </span>
+                <span className="font-mono text-[10px] text-accent">Mbabane H100</span>
+              </button>
+
+              {showDirections && (
+                <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border dark:border-slate-850 space-y-3 animate-fadeIn text-xs">
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-slate-700 dark:text-slate-300">Choose Starting Point:</span>
+                    <select
+                      value={selectedOrigin}
+                      onChange={(e) => setSelectedOrigin(e.target.value)}
+                      className="bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-lg px-2 py-1 text-[11px] font-bold text-slate-800 dark:text-white cursor-pointer"
+                    >
+                      {Object.keys(directionsMap).map(origin => (
+                        <option key={origin} value={origin}>{origin}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="bg-white dark:bg-slate-900 p-3 rounded-xl border dark:border-slate-800 space-y-2">
+                    <div className="flex justify-between items-center font-bold text-slate-900 dark:text-white border-b dark:border-slate-800 pb-2">
+                      <span>Estimated Travel Time:</span>
+                      <span className="font-mono text-primary">{directionsMap[selectedOrigin].time}</span>
+                    </div>
+                    <ul className="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400 pl-4 list-disc font-medium">
+                      {directionsMap[selectedOrigin].steps.map((step, idx) => (
+                        <li key={idx}>{step}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <a
+                    href="https://maps.google.com/?q=Somhlolo+Road,+Mbabane,+Eswatini"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full bg-primary hover:bg-primary-hover text-white py-2 rounded-xl font-bold text-center flex items-center justify-center space-x-1.5 transition shadow"
+                  >
+                    <span>Open in Google Maps Navigation</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center space-x-1.5 text-xs text-slate-500 pt-1">
+              <Clock className="h-4 w-4 text-slate-400 shrink-0" />
+              <span>Free customer parking available right outside LM Building Unit 10.</span>
             </div>
           </div>
 
@@ -253,3 +445,4 @@ export default function ContactUs() {
     </div>
   );
 }
+

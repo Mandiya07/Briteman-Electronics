@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Laptop, ClipboardList, PenTool, Truck, RefreshCw, Printer, Sparkles, PhoneCall, CheckSquare } from 'lucide-react';
 
 interface ServicePagesProps {
@@ -6,36 +6,53 @@ interface ServicePagesProps {
 }
 
 export default function ServicePages({ onTabChange }: ServicePagesProps) {
-  const serviceItems = [
-    {
-      id: "it-solutions",
-      icon: <Laptop className="h-6 w-6 text-primary" />,
-      title: "Business IT Solutions",
-      desc: "Comprehensive desktop, server room, and network router setups for corporate offices throughout Mbabane and Matsapha. Includes structured cabling, firewall installations, and standard Microsoft environment prep.",
-      details: ["Corporate active directories", "TP-Link / Cisco networking", "Active backup routines", "SLA Support contracts"]
-    },
-    {
-      id: "school-supply",
-      icon: <ClipboardList className="h-6 w-6 text-accent" />,
-      title: "School Technology Supply",
-      desc: "Empowering Eswatini's student classrooms. We supply bulk student laptops, teaching projectors, printer paper stations, and kids retro educational consoles to schools with specialized school-ledger credit limits.",
-      details: ["Bulk educational laptops", "TPM secure teaching laptops", "Projector & smartboards", "Retro learning nodes"]
-    },
-    {
-      id: "delivery-pickup",
-      icon: <Truck className="h-6 w-6 text-emerald-500" />,
-      title: "Secure Delivery & Mbabane Pickup",
-      desc: "Fast, secure transit directly to any school district or industrial office in Ezulwini, Manzini, Siteki, and Piggs Peak. Alternatively, enjoy free, immediate over-the-counter pickups at Unit 10, Somhlolo Road.",
-      details: ["Mbabane Pickup: FREE", "Same Day Ezulwini Delivery", "Tracked Courier packages", "VAT invoice attached"]
-    },
-    {
-      id: "printer-solutions",
-      icon: <Printer className="h-6 w-6 text-indigo-500" />,
-      title: "Printer Cartridge-Free Solutions",
-      desc: "Official distribution of Canon PIXMA and Epson EcoTanks. We consult on bulk ink tank conversions, reducing annual overhead expenses by up to 90%. Authorized maintenance and genuine ink refills.",
-      details: ["EcoTank conversions", "Canon wireless ink-tank sets", "Genuine brand bottled ink", "Fast repair assistance"]
+  const [serviceItems, setServiceItems] = useState(() => {
+    const saved = localStorage.getItem('briteman_services');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
     }
-  ];
+    return [
+      {
+        id: "it-solutions",
+        title: "Business IT Solutions",
+        desc: "Comprehensive desktop, server room, and network router setups for corporate offices throughout Mbabane and Matsapha. Includes structured cabling, firewall installations, and standard Microsoft environment prep.",
+        details: ["Corporate active directories", "TP-Link / Cisco networking", "Active backup routines", "SLA Support contracts"]
+      },
+      {
+        id: "school-supply",
+        title: "School Technology Supply",
+        desc: "Empowering Eswatini's student classrooms. We supply bulk student laptops, teaching projectors, printer paper stations, and kids retro educational consoles to schools with specialized school-ledger credit limits.",
+        details: ["Bulk educational laptops", "TPM secure teaching laptops", "Projector & smartboards", "Retro learning nodes"]
+      },
+      {
+        id: "delivery-pickup",
+        title: "Secure Delivery & Mbabane Pickup",
+        desc: "Fast, secure transit directly to any school district or industrial office in Ezulwini, Manzini, Siteki, and Piggs Peak. Alternatively, enjoy free, immediate over-the-counter pickups at Unit 10, Somhlolo Road.",
+        details: ["Mbabane Pickup: FREE", "Same Day Ezulwini Delivery", "Tracked Courier packages", "VAT invoice attached"]
+      },
+      {
+        id: "printer-solutions",
+        title: "Printer Cartridge-Free Solutions",
+        desc: "Official distribution of Canon PIXMA and Epson EcoTanks. We consult on bulk ink tank conversions, reducing annual overhead expenses by up to 90%. Authorized maintenance and genuine ink refills.",
+        details: ["EcoTank conversions", "Canon wireless ink-tank sets", "Genuine brand bottled ink", "Fast repair assistance"]
+      }
+    ];
+  });
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      const saved = localStorage.getItem('briteman_services');
+      if (saved) {
+        try { setServiceItems(JSON.parse(saved)); } catch (e) {}
+      }
+    };
+    window.addEventListener('storage', handleUpdate);
+    window.addEventListener('services-updated', handleUpdate as EventListener);
+    return () => {
+      window.removeEventListener('storage', handleUpdate);
+      window.removeEventListener('services-updated', handleUpdate as EventListener);
+    };
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -63,7 +80,11 @@ export default function ServicePages({ onTabChange }: ServicePagesProps) {
             className="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 text-left space-y-4 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition duration-300"
           >
             <div className="p-3.5 bg-slate-100 dark:bg-slate-900 rounded-2xl w-fit border dark:border-slate-800">
-              {s.icon}
+              {s.image ? (
+                <img src={s.image} alt={s.title} className="h-6 w-6 object-cover rounded-lg" />
+              ) : (
+                <Laptop className="h-6 w-6 text-primary" />
+              )}
             </div>
             
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">{s.title}</h3>

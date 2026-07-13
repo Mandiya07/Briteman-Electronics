@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   ArrowRight, Laptop, Monitor, FileText, ShoppingBag, Landmark, Award, ShieldCheck, 
   Truck, Sparkles, Star, ChevronRight, MessageSquare, Percent, ThumbsUp, HelpCircle, 
@@ -139,22 +139,43 @@ export default function Homepage({
     }
   ];
 
-  // Brand index
-  const BRANDS = [
-    { name: 'HP', desc: 'Enterprise Systems' },
-    { name: 'Dell', desc: 'Secure Workstations' },
-    { name: 'Lenovo', desc: 'ThinkPad Durability' },
-    { name: 'Apple', desc: 'High-End Innovation' },
-    { name: 'Acer', desc: 'Outstanding Value' },
-    { name: 'Asus', desc: 'Gaming Powerhouses' },
-    { name: 'Samsung', desc: 'Display & Mobile' },
-    { name: 'Canon', desc: 'Legendary Imaging' },
-    { name: 'Epson', desc: 'EcoTank Ink champions' },
-    { name: 'Logitech', desc: 'Smart Peripherals' },
-    { name: 'Toshiba', desc: 'Reliable Compute' },
-    { name: 'Seagate', desc: 'Dense Storage HDDs' },
-    { name: 'Western Digital', desc: 'High-Speed M.2 SSDs' }
-  ];
+  // Brand index with localStorage sync
+  const [BRANDS, setBrands] = useState<{ name: string; desc: string; logo?: string }[]>(() => {
+    const saved = localStorage.getItem('briteman_licensed_brands');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { /* fallback */ }
+    }
+    return [
+      { name: 'HP', desc: 'Enterprise Systems' },
+      { name: 'Dell', desc: 'Secure Workstations' },
+      { name: 'Lenovo', desc: 'ThinkPad Durability' },
+      { name: 'Apple', desc: 'High-End Innovation' },
+      { name: 'Acer', desc: 'Outstanding Value' },
+      { name: 'Asus', desc: 'Gaming Powerhouses' },
+      { name: 'Samsung', desc: 'Display & Mobile' },
+      { name: 'Canon', desc: 'Legendary Imaging' },
+      { name: 'Epson', desc: 'EcoTank Ink champions' },
+      { name: 'Logitech', desc: 'Smart Peripherals' },
+      { name: 'Toshiba', desc: 'Reliable Compute' },
+      { name: 'Seagate', desc: 'Dense Storage HDDs' },
+      { name: 'Western Digital', desc: 'High-Speed M.2 SSDs' }
+    ];
+  });
+
+  useEffect(() => {
+    const handleBrandsUpdate = () => {
+      const saved = localStorage.getItem('briteman_licensed_brands');
+      if (saved) {
+        try { setBrands(JSON.parse(saved)); } catch (e) { /* ignore */ }
+      }
+    };
+    window.addEventListener('storage', handleBrandsUpdate);
+    window.addEventListener('brands-updated', handleBrandsUpdate as EventListener);
+    return () => {
+      window.removeEventListener('storage', handleBrandsUpdate);
+      window.removeEventListener('brands-updated', handleBrandsUpdate as EventListener);
+    };
+  }, []);
 
   // Why choose advantages (8 required components)
   const trustFactors = [
@@ -691,6 +712,11 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
               }}
               className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-4 py-3.5 rounded-2xl flex flex-col justify-center items-center text-center cursor-pointer shadow-sm hover:border-[#FF6B00] hover:scale-103 transition-all duration-300 group"
             >
+              {b.logo ? (
+                <div className="h-8 w-20 flex items-center justify-center mb-1">
+                  <img src={b.logo} alt={b.name} className="max-h-7 max-w-full object-contain" />
+                </div>
+              ) : null}
               <span className="font-extrabold font-display leading-tight text-[#121212] dark:text-white text-base group-hover:text-[#FF6B00] uppercase tracking-wide">
                 {b.name}
               </span>

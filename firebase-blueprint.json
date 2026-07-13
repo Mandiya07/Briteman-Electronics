@@ -1,0 +1,97 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Inventory product item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 200 },
+        "sku": { "type": "string", "maxLength": 50 },
+        "price": { "type": "number" },
+        "stock": { "type": "number" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "description": { "type": "string", "maxLength": 2000 },
+        "image": { "type": "string" },
+        "availability": { "type": "string" }
+      },
+      "required": ["id", "name", "sku", "price", "stock", "category"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "total": { "type": "number" },
+        "paymentMethod": { "type": "string" }
+      },
+      "required": ["id", "customerName", "phone", "total"]
+    },
+    "WholesaleQuoteRequest": {
+      "title": "WholesaleQuoteRequest",
+      "description": "B2B quote request",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "businessType": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "companyName", "email", "status"]
+    },
+    "WholesaleProfile": {
+      "title": "WholesaleProfile",
+      "description": "B2B account registration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyName": { "type": "string" },
+        "contactPerson": { "type": "string" },
+        "email": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "companyName", "email", "status"]
+    },
+    "Coupon": {
+      "title": "Coupon",
+      "description": "Discount coupon code",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "percent": { "type": "number" },
+        "active": { "type": "boolean" },
+        "description": { "type": "string" }
+      },
+      "required": ["code", "percent", "active"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "Product" },
+      "description": "Store inventory products"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "Order" },
+      "description": "Store customer orders"
+    },
+    "/quotes/{quoteId}": {
+      "schema": { "$ref": "WholesaleQuoteRequest" },
+      "description": "B2B quote requests"
+    },
+    "/registrations/{regId}": {
+      "schema": { "$ref": "WholesaleProfile" },
+      "description": "B2B wholesale registrations"
+    },
+    "/coupons/{couponCode}": {
+      "schema": { "$ref": "Coupon" },
+      "description": "Active discount coupons"
+    }
+  }
+}

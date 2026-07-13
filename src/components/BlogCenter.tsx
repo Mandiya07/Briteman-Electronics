@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, ArrowRight, ArrowLeft, Search, BookmarkCheck, Share2, Sparkles, User } from 'lucide-react';
 import { BlogArticle } from '../types';
 
@@ -6,13 +6,36 @@ interface BlogCenterProps {
   blogs: BlogArticle[];
 }
 
-export default function BlogCenter({ blogs }: BlogCenterProps) {
+export default function BlogCenter({ blogs: initialBlogs }: BlogCenterProps) {
+  const [blogsList, setBlogsList] = useState<BlogArticle[]>(() => {
+    const saved = localStorage.getItem('briteman_blogs');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
+    }
+    return initialBlogs;
+  });
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      const saved = localStorage.getItem('briteman_blogs');
+      if (saved) {
+        try { setBlogsList(JSON.parse(saved)); } catch (e) {}
+      }
+    };
+    window.addEventListener('storage', handleUpdate);
+    window.addEventListener('blogs-updated', handleUpdate as EventListener);
+    return () => {
+      window.removeEventListener('storage', handleUpdate);
+      window.removeEventListener('blogs-updated', handleUpdate as EventListener);
+    };
+  }, []);
+
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeArticle, setActiveArticle] = useState<BlogArticle | null>(null);
 
   const categories = ['All', 'Student Technology Advice', 'Computer Maintenance Tips', 'Printer Guides'];
 
-  const filteredBlogs = blogs.filter(b => {
+  const filteredBlogs = blogsList.filter(b => {
     return selectedCategory === 'All' || b.category === selectedCategory;
   });
 

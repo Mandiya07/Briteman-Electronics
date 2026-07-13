@@ -14,6 +14,7 @@ import CartDrawer from './components/CartDrawer';
 import WishlistDrawer from './components/WishlistDrawer';
 import AdminDashboard from './components/AdminDashboard';
 import AiAssistant from './components/AiAssistant';
+import { Logo } from './components/Logo';
 
 import { Product, CartItem, Order, WholesaleQuoteRequest, WholesaleProfile, Coupon } from './types';
 import { PRODUCTS, BLOGS, CATEGORIES } from './data/products';
@@ -39,63 +40,14 @@ export default function App() {
 
   // Dynamic states for premium features: recently viewed and coupon management
   const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
-  const [coupons, setCoupons] = useState<Coupon[]>([
-    { code: 'BRITEMAN10', percent: 10, active: true, description: '15% VAT adjustment discount.' },
-    { code: 'WELCOME5', percent: 5, active: true, description: '5% Welcome retail deduction.' },
-    { code: 'MOMOFLASH', percent: 15, active: true, description: '15% Off flash mobile money special.' }
-  ]);
+  const [coupons, setCoupons] = useState<Coupon[]>([]);
 
   // Dynamic lists returned from server OR kept reactively in-memory
   const [orders, setOrders] = useState<Order[]>([]);
   
-  const [quotes, setQuotes] = useState<WholesaleQuoteRequest[]>([
-    {
-      id: 'RFQ-7482',
-      companyName: 'Limkokwing University Tech Lab',
-      email: 'itprocurement@limkokwing.ac.sz',
-      phone: '+268 7602 1144',
-      businessType: 'College',
-      message: 'Need 15x i7 corporate notebooks with pre-allocated Windows 11 enterprise configurations.',
-      items: [{ productId: 'p1', quantity: 15, productName: 'HP EliteBook 840 G8' }],
-      status: 'Pending',
-      createdAt: '2026-06-08'
-    },
-    {
-      id: 'RFQ-9284',
-      companyName: 'Mbabane Central Primary School',
-      email: 'headmistress@centralprimary.edu',
-      phone: '+268 7654 3920',
-      businessType: 'School',
-      message: 'Kindly send a quote for 10x portable vintage retro consoles for educational visual games.',
-      items: [{ productId: 'p13', quantity: 10, productName: 'Kids Portable Gaming Console 400-in-1 Retro' }],
-      status: 'Approved',
-      assignedPrice: 4200,
-      createdAt: '2026-06-09'
-    }
-  ]);
+  const [quotes, setQuotes] = useState<WholesaleQuoteRequest[]>([]);
 
-  const [registrations, setRegistrations] = useState<WholesaleProfile[]>([
-    {
-      id: 'REG-5120',
-      companyName: 'Eswatini Ministry of Information',
-      contactPerson: 'Director Nomsa Dlamini',
-      email: 'directorgeneral@gov.sz',
-      phone: '+268 3402 1845',
-      businessType: 'Government',
-      status: 'Approved',
-      createdAt: '2026-06-05'
-    },
-    {
-      id: 'REG-8290',
-      companyName: 'Swazi Technology Hub Ltd',
-      contactPerson: 'Mr. Sipho Simelane',
-      email: 'simelane@swazitech.sz',
-      phone: '+268 7662 4492',
-      businessType: 'Corporate',
-      status: 'Pending',
-      createdAt: '2026-06-09'
-    }
-  ]);
+  const [registrations, setRegistrations] = useState<WholesaleProfile[]>([]);
 
   // Load from server database if available, other fallback to reactive state
   useEffect(() => {
@@ -254,6 +206,18 @@ export default function App() {
   // Admin stocks modifier
   const handleUpdateStockInState = (id: string, qty: number) => {
     setProductsList(productsList.map(p => p.id === id ? { ...p, stock: Math.max(0, qty), availability: qty > 5 ? 'In Stock' : qty > 0 ? 'Low Stock' : 'Out of Stock' } : p));
+  };
+
+  const handleCreateProduct = (newProduct: Product) => {
+    setProductsList(prev => [newProduct, ...prev]);
+  };
+
+  const handleEditProduct = (updatedProduct: Product) => {
+    setProductsList(prev => prev.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+  };
+
+  const handleDeleteProduct = (productId: string) => {
+    setProductsList(prev => prev.filter(p => p.id !== productId));
   };
 
   // Wholesale portal triggers (sends backend HTTP posts if live, parses locally too)
@@ -438,6 +402,9 @@ export default function App() {
             quotes={quotes}
             registrations={registrations}
             onUpdateStock={handleUpdateStockInState}
+            onAddProduct={handleCreateProduct}
+            onEditProduct={handleEditProduct}
+            onDeleteProduct={handleDeleteProduct}
             onApproveQuote={handleApproveQuote}
             onApproveRegistration={handleApproveRegistration}
             coupons={coupons}
@@ -454,7 +421,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
           
           <div className="space-y-4">
-            <span className="font-display font-black text-xl tracking-tight uppercase tracking-widest text-white">BRITEMAN SERVICES</span>
+            <div className="inline-block bg-white/5 p-2 rounded-2xl">
+              <Logo />
+            </div>
             <p className="text-slate-400 text-xs leading-relaxed max-w-xs">
               Eswatini's premium technology retail partner positioned in somhlolo route, Mbabane. HP original notebooks, Canon printers, load-shedding backup kits, and school procurement ledgers.
             </p>
