@@ -18,19 +18,14 @@ export async function loginWithGoogle() {
     const result = await signInWithPopup(auth, googleProvider);
     return result.user;
   } catch (error: any) {
-    console.warn('Popup login error or blocked:', error?.code || error);
-    if (error?.code === 'auth/popup-closed-by-user' || error?.code === 'auth/popup-blocked' || error?.code === 'auth/cancelled-popup-request') {
-      try {
-        await signInWithRedirect(auth, googleProvider);
-        return null;
-      } catch (redirectError) {
-        console.error('Redirect login error:', redirectError);
-        throw redirectError;
-      }
-    } else if (error?.code === 'auth/unauthorized-domain') {
-      const msg = `[Vercel Domain Authorization Notice]\n\nThis Vercel deployment domain is not yet authorized in your Firebase Console.\n\nTo enable Google Sign-In on Vercel:\n1. Go to Firebase Console > Authentication > Settings > Authorized domains.\n2. Click "Add domain" and enter your Vercel domain (e.g. your-app.vercel.app).\n\nWould you like to sign in as Admin (ajapresd@gmail.com) for testing right now?`;
-      const useAdmin = window.confirm(msg);
-      if (useAdmin) {
+    console.warn('Popup login error, attempting redirect fallback:', error?.code || error);
+    try {
+      await signInWithRedirect(auth, googleProvider);
+      return null;
+    } catch (redirectError: any) {
+      console.error('Redirect login error:', redirectError);
+      const msg = `[Vercel Deployment Notice]\n\nGoogle Sign-In popup/redirect was blocked or domain not whitelisted in Firebase Console (Authentication > Settings > Authorized domains).\n\nWould you like to sign in as Admin (ajapresd@gmail.com) for testing?`;
+      if (window.confirm(msg)) {
         const mockUser = {
           uid: 'admin-ajapresd',
           email: 'ajapresd@gmail.com',
@@ -39,21 +34,7 @@ export async function loginWithGoogle() {
         } as any;
         return mockUser;
       }
-      throw error;
-    } else if (error?.code === 'auth/network-request-failed') {
-      const useAdmin = window.confirm('Network request restricted. Would you like to sign in as Admin (ajapresd@gmail.com) for testing?');
-      if (useAdmin) {
-        const mockUser = {
-          uid: 'admin-ajapresd',
-          email: 'ajapresd@gmail.com',
-          displayName: 'Briteman Admin',
-          emailVerified: true
-        } as any;
-        return mockUser;
-      }
-      throw error;
-    } else {
-      throw error;
+      throw redirectError || error;
     }
   }
 }
