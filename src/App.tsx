@@ -19,8 +19,35 @@ import { Logo } from './components/Logo';
 import { Product, CartItem, Order, WholesaleQuoteRequest, WholesaleProfile, Coupon } from './types';
 import { PRODUCTS, BLOGS, CATEGORIES } from './data/products';
 import { Phone, MessageSquare, MapPin, Mail, ChevronRight, CheckCircle2, Star, Percent, Sparkles, Scale, ShoppingBag, Send } from 'lucide-react';
+import { auth, loginWithGoogle, logoutUser } from './lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
 export default function App() {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogin = async () => {
+    try {
+      await loginWithGoogle();
+    } catch (e) {
+      console.error('Google login error:', e);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+    } catch (e) {
+      console.error('Logout error:', e);
+    }
+  };
+
   const [activeTab, setActiveTab] = useState<string>('home');
   const [productsList, setProductsList] = useState<Product[]>(PRODUCTS);
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -319,6 +346,9 @@ export default function App() {
             setActiveTab('shop');
           }
         }}
+        currentUser={currentUser}
+        onLogin={handleLogin}
+        onLogout={handleLogout}
       />
 
       {/* Main Switchable Contents */}

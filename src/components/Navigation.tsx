@@ -13,6 +13,9 @@ interface NavigationProps {
   onOpenWishlist: () => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  currentUser?: any;
+  onLogin?: () => void;
+  onLogout?: () => void;
 }
 
 export default function Navigation({
@@ -23,7 +26,10 @@ export default function Navigation({
   onOpenCart,
   onOpenWishlist,
   searchQuery,
-  onSearchChange
+  onSearchChange,
+  currentUser,
+  onLogin,
+  onLogout
 }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
@@ -190,6 +196,32 @@ export default function Navigation({
                 <User className="h-5 w-5" />
                 <span className="text-[10px] font-bold uppercase tracking-widest hidden xl:inline">Portal</span>
               </button>
+
+              {/* Authentication Status / Login / Logout */}
+              {currentUser ? (
+                <div className="flex items-center space-x-2 bg-slate-100 dark:bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                  <div className="text-left hidden xl:block">
+                    <p className="text-[10px] font-bold text-slate-900 dark:text-white truncate max-w-[120px]">{currentUser.email}</p>
+                    <p className="text-[8px] text-emerald-500 font-mono">● Online / Verified</p>
+                  </div>
+                  <button
+                    onClick={onLogout}
+                    className="text-[10px] font-bold uppercase tracking-wider text-red-500 hover:text-red-700 bg-red-50 dark:bg-red-950/30 px-2 py-1 rounded-lg transition cursor-pointer"
+                    title="Sign Out"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={onLogin}
+                  className="bg-primary hover:bg-primary-hover text-white text-[11px] font-bold px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5 cursor-pointer shadow-sm"
+                  title="Sign In with Google"
+                >
+                  <User className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">Sign In</span>
+                </button>
+              )}
             </div>
           </div>
 

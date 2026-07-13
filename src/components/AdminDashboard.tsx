@@ -39,6 +39,16 @@ export default function AdminDashboard({
   
   const [activeTab, setActiveTab] = useState<'overview' | 'inventory' | 'branding' | 'brands' | 'company' | 'orders' | 'wholesale' | 'discounts' | 'services' | 'blogs'>('overview');
   
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [editName, setEditName] = useState('');
+  const [editSku, setEditSku] = useState('');
+  const [editPrice, setEditPrice] = useState(0);
+  const [editStock, setEditStock] = useState(0);
+  const [editCategory, setEditCategory] = useState('');
+  const [editBrand, setEditBrand] = useState('');
+  const [editDesc, setEditDesc] = useState('');
+  const [editImage, setEditImage] = useState('');
+  
   // Custom price setter for wholesale quotes
   const [quotePrices, setQuotePrices] = useState<{ [key: string]: number }>({});
   
