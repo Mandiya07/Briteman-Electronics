@@ -18,7 +18,7 @@ import { Logo } from './components/Logo';
 
 import { Product, CartItem, Order, WholesaleQuoteRequest, WholesaleProfile, Coupon } from './types';
 import { PRODUCTS, BLOGS, CATEGORIES } from './data/products';
-import { Phone, MessageSquare, MapPin, Mail, ChevronRight, CheckCircle2, Star, Percent, Sparkles, Scale, ShoppingBag, Send } from 'lucide-react';
+import { Phone, MessageSquare, MapPin, Mail, ChevronRight, CheckCircle2, Star, Percent, Sparkles, Scale, ShoppingBag, Send, ShieldAlert, Lock, UserCheck } from 'lucide-react';
 import { auth, loginWithGoogle, logoutUser } from './lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 
@@ -28,13 +28,22 @@ export default function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      if (user && user.email?.toLowerCase() === 'ajapresd@gmail.com') {
+        setActiveTab('admin');
+      }
     });
     return () => unsubscribe();
   }, []);
 
   const handleLogin = async () => {
     try {
-      await loginWithGoogle();
+      const user = await loginWithGoogle();
+      if (user) {
+        setCurrentUser(user);
+        if (user.email?.toLowerCase() === 'ajapresd@gmail.com') {
+          setActiveTab('admin');
+        }
+      }
     } catch (e) {
       console.error('Google login error:', e);
     }
@@ -43,6 +52,10 @@ export default function App() {
   const handleLogout = async () => {
     try {
       await logoutUser();
+      setCurrentUser(null);
+      if (activeTab === 'admin') {
+        setActiveTab('home');
+      }
     } catch (e) {
       console.error('Logout error:', e);
     }
@@ -426,22 +439,69 @@ export default function App() {
         )}
 
         {activeTab === 'admin' && (
-          <AdminDashboard
-            products={productsList}
-            orders={orders}
-            quotes={quotes}
-            registrations={registrations}
-            onUpdateStock={handleUpdateStockInState}
-            onAddProduct={handleCreateProduct}
-            onEditProduct={handleEditProduct}
-            onDeleteProduct={handleDeleteProduct}
-            onApproveQuote={handleApproveQuote}
-            onApproveRegistration={handleApproveRegistration}
-            coupons={coupons}
-            onCreateCoupon={handleCreateCoupon}
-            onToggleCoupon={handleToggleCoupon}
-            onDeleteCoupon={handleDeleteCoupon}
-          />
+          currentUser?.email?.toLowerCase() === 'ajapresd@gmail.com' ? (
+            <AdminDashboard
+              products={productsList}
+              orders={orders}
+              quotes={quotes}
+              registrations={registrations}
+              onUpdateStock={handleUpdateStockInState}
+              onAddProduct={handleCreateProduct}
+              onEditProduct={handleEditProduct}
+              onDeleteProduct={handleDeleteProduct}
+              onApproveQuote={handleApproveQuote}
+              onApproveRegistration={handleApproveRegistration}
+              coupons={coupons}
+              onCreateCoupon={handleCreateCoupon}
+              onToggleCoupon={handleToggleCoupon}
+              onDeleteCoupon={handleDeleteCoupon}
+            />
+          ) : (
+            <div className="max-w-md mx-auto py-20 px-6 text-center">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-3xl shadow-xl space-y-6">
+                <div className="h-16 w-16 bg-red-100 dark:bg-red-950/50 text-red-500 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+                  <Lock className="h-8 w-8" />
+                </div>
+                <div className="space-y-2">
+                  <h2 className="text-xl font-black text-slate-900 dark:text-white">Restricted Admin Access</h2>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                    The Briteman Electronics Manager Dashboard is strictly secured for authorized administrators. Please sign in with the designated admin account: <span className="font-mono text-primary font-bold">ajapresd@gmail.com</span>
+                  </p>
+                </div>
+
+                {currentUser ? (
+                  <div className="space-y-4 pt-2">
+                    <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border dark:border-slate-800 text-xs">
+                      <p className="text-slate-400">Currently signed in as:</p>
+                      <p className="font-mono font-bold text-slate-800 dark:text-white mt-0.5">{currentUser.email}</p>
+                      <p className="text-[10px] text-red-500 mt-1 font-semibold">⚠️ This account is not authorized as Admin.</p>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer"
+                    >
+                      Sign Out & Switch Account
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={handleLogin}
+                    className="w-full bg-primary hover:bg-primary-hover text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-lg flex items-center justify-center space-x-2 cursor-pointer"
+                  >
+                    <UserCheck className="h-4 w-4" />
+                    <span>Sign In with Google (ajapresd@gmail.com)</span>
+                  </button>
+                )}
+
+                <button
+                  onClick={() => setActiveTab('home')}
+                  className="text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-300 underline font-medium"
+                >
+                  Return to Storefront
+                </button>
+              </div>
+            </div>
+          )
         )}
 
       </main>
