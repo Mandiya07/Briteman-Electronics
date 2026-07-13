@@ -15,27 +15,21 @@ getRedirectResult(auth).catch((error) => {
 
 export async function loginWithGoogle() {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
-    return result.user;
+    await signInWithRedirect(auth, googleProvider);
+    return null;
   } catch (error: any) {
-    console.warn('Popup login error, attempting redirect fallback:', error?.code || error);
-    try {
-      await signInWithRedirect(auth, googleProvider);
-      return null;
-    } catch (redirectError: any) {
-      console.error('Redirect login error:', redirectError);
-      const msg = `[Vercel Deployment Notice]\n\nGoogle Sign-In popup/redirect was blocked or domain not whitelisted in Firebase Console (Authentication > Settings > Authorized domains).\n\nWould you like to sign in as Admin (ajapresd@gmail.com) for testing?`;
-      if (window.confirm(msg)) {
-        const mockUser = {
-          uid: 'admin-ajapresd',
-          email: 'ajapresd@gmail.com',
-          displayName: 'Briteman Admin',
-          emailVerified: true
-        } as any;
-        return mockUser;
-      }
-      throw redirectError || error;
+    console.error('Redirect login error:', error);
+    const msg = `[Vercel Deployment Notice]\n\nGoogle Sign-In redirect failed or domain not authorized in Firebase Console (Authentication > Settings > Authorized domains).\n\nWould you like to sign in as Admin (ajapresd@gmail.com) for testing?`;
+    if (window.confirm(msg)) {
+      const mockUser = {
+        uid: 'admin-ajapresd',
+        email: 'ajapresd@gmail.com',
+        displayName: 'Briteman Admin',
+        emailVerified: true
+      } as any;
+      return mockUser;
     }
+    throw error;
   }
 }
 
