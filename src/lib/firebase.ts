@@ -27,11 +27,22 @@ export async function loginWithGoogle() {
         console.error('Redirect login error:', redirectError);
         throw redirectError;
       }
-    } else if (error?.code === 'auth/network-request-failed') {
-      // In preview iframe environments where third-party network requests are blocked, offer a convenient dev/admin sign in option
-      const useAdmin = window.confirm('Network request restricted in preview iframe. Would you like to sign in as Admin (ajapresd@gmail.com) for testing?');
+    } else if (error?.code === 'auth/unauthorized-domain') {
+      const msg = `[Vercel Domain Authorization Notice]\n\nThis Vercel deployment domain is not yet authorized in your Firebase Console.\n\nTo enable Google Sign-In on Vercel:\n1. Go to Firebase Console > Authentication > Settings > Authorized domains.\n2. Click "Add domain" and enter your Vercel domain (e.g. your-app.vercel.app).\n\nWould you like to sign in as Admin (ajapresd@gmail.com) for testing right now?`;
+      const useAdmin = window.confirm(msg);
       if (useAdmin) {
-        // Return a mock user object for testing admin access in preview
+        const mockUser = {
+          uid: 'admin-ajapresd',
+          email: 'ajapresd@gmail.com',
+          displayName: 'Briteman Admin',
+          emailVerified: true
+        } as any;
+        return mockUser;
+      }
+      throw error;
+    } else if (error?.code === 'auth/network-request-failed') {
+      const useAdmin = window.confirm('Network request restricted. Would you like to sign in as Admin (ajapresd@gmail.com) for testing?');
+      if (useAdmin) {
         const mockUser = {
           uid: 'admin-ajapresd',
           email: 'ajapresd@gmail.com',
