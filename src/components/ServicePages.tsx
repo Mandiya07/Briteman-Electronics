@@ -15,7 +15,7 @@ export default function ServicePages({ onTabChange }: ServicePagesProps) {
       {
         id: "it-solutions",
         title: "Business IT Solutions",
-        desc: "Comprehensive desktop, server room, and network router setups for corporate offices throughout Mbabane and Matsapha. Includes structured cabling, firewall installations, and standard Microsoft environment prep.",
+        desc: "Comprehensive desktop, server room, and network router setups for corporate offices throughout Manzini and Matsapha. Includes structured cabling, firewall installations, and standard Microsoft environment prep.",
         details: ["Corporate active directories", "TP-Link / Cisco networking", "Active backup routines", "SLA Support contracts"]
       },
       {
@@ -26,9 +26,9 @@ export default function ServicePages({ onTabChange }: ServicePagesProps) {
       },
       {
         id: "delivery-pickup",
-        title: "Secure Delivery & Mbabane Pickup",
-        desc: "Fast, secure transit directly to any school district or industrial office in Ezulwini, Manzini, Siteki, and Piggs Peak. Alternatively, enjoy free, immediate over-the-counter pickups at Unit 10, Somhlolo Road.",
-        details: ["Mbabane Pickup: FREE", "Same Day Ezulwini Delivery", "Tracked Courier packages", "VAT invoice attached"]
+        title: "Secure Delivery & Manzini Pickup",
+        desc: "Fast, secure transit directly to any school district or industrial office in Ezulwini, Manzini, Siteki, and Piggs Peak. Alternatively, enjoy free, immediate over-the-counter pickups at Unit 10, The Hub.",
+        details: ["Manzini Pickup: FREE", "Same Day Ezulwini Delivery", "Tracked Courier packages", "VAT invoice attached"]
       },
       {
         id: "printer-solutions",
@@ -112,7 +112,7 @@ export default function ServicePages({ onTabChange }: ServicePagesProps) {
         
         <div className="relative z-10 max-w-2xl mx-auto space-y-4">
           <h3 className="text-2xl sm:text-3xl font-black font-display text-white uppercase tracking-tight">
-            Need customized technology setups for your Mbabane office?
+            Need customized technology setups for your Manzini office?
           </h3>
           <p className="text-sm text-slate-300 font-light">
             Our technology technicians design customized configurations with APC load-shedding backup circuits, bulk HP EliteBooks, and multi-user configurations to fit unique operational budgets.

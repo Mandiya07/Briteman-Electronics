@@ -181,7 +181,7 @@ export default function WholesalePortal({
           </h1>
           
           <p className="text-sm sm:text-base text-slate-350 leading-relaxed font-light max-w-3xl">
-            Welcome to the official <b>Briteman Services</b> commercial desk in Mbabane. Register your organization or dispatch your RFQ requirements lists directly to our specialist bidding coordinators. We supply verified grade-A hardware and power infrastructure solutions to ministries, educational institutes, and independent retailers across Eswatini.
+            Welcome to the official <b>Briteman Services</b> commercial desk in Manzini. Register your organization or dispatch your RFQ requirements lists directly to our specialist bidding coordinators. We supply verified grade-A hardware and power infrastructure solutions to ministries, educational institutes, and independent retailers across Eswatini.
           </p>
 
           <div className="pt-4 flex flex-wrap gap-4 text-xs font-mono">
@@ -244,7 +244,7 @@ export default function WholesalePortal({
             </div>
             <h3 className="font-bold text-slate-900 dark:text-white text-base">Dedicated Account Manager</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              A personal coordinator on Somhlolo Road assists with administrative paperwork, local government compliance audits, and custom equipment upgrades.
+              A personal coordinator on The Hub assists with administrative paperwork, local government compliance audits, and custom equipment upgrades.
             </p>
             <div className="text-[10px] font-mono text-emerald-600 font-bold bg-emerald-100/30 px-2 py-1 rounded w-fit">
               1-ON-1 DESK SERVICE
@@ -258,7 +258,7 @@ export default function WholesalePortal({
             </div>
             <h3 className="font-bold text-slate-900 dark:text-white text-base">Fast Fulfillment</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Wholesale accounts occupy an isolated express pick lane in our central Mbabane showroom. Guaranteed next-day courier delivery or immediate local staging.
+              Wholesale accounts occupy an isolated express pick lane in our central Manzini showroom. Guaranteed next-day courier delivery or immediate local staging.
             </p>
             <div className="text-[10px] font-mono text-violet-600 font-bold bg-violet-100/30 px-2 py-1 rounded w-fit">
               PRE-SORTED ASSEMBLY LINE
@@ -563,7 +563,7 @@ export default function WholesalePortal({
                 </div>
                 <h4 className="font-bold text-emerald-800 dark:text-emerald-400">Registration Lodged</h4>
                 <p className="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto">
-                  Dossier received! Our Mbabane accounts supervisor is reviewing commercial tax registry certificates. We've initiated a tracking session for you.
+                  Dossier received! Our Manzini accounts supervisor is reviewing commercial tax registry certificates. We've initiated a tracking session for you.
                 </p>
                 
                 <button
@@ -589,7 +589,7 @@ export default function WholesalePortal({
                     onChange={(e) => setCompanyName(e.target.value)}
                     type="text"
                     required
-                    placeholder="e.g. Mbabane Educational Trust Dept"
+                    placeholder="e.g. Manzini Educational Trust Dept"
                     className="w-full p-2.5 bg-white dark:bg-slate-950 border dark:border-slate-800 text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-xs"
                   />
                 </div>
@@ -778,7 +778,7 @@ export default function WholesalePortal({
 
                     {q.status === 'Approved' && (
                       <div className="pt-2 border-t border-white/5 flex flex-wrap justify-between items-center text-[11px] gap-2">
-                        <span className="text-emerald-500/90 font-bold block">✓ Custom contract approved by Mbabane Accounts Hub</span>
+                        <span className="text-emerald-500/90 font-bold block">✓ Custom contract approved by Manzini Accounts Hub</span>
                         
                         <a
                           id={`quote-whatsapp-checkout-${q.id}`}
@@ -850,7 +850,7 @@ export default function WholesalePortal({
                       </div>
                     ) : (
                       <div className="p-2.5 bg-slate-900/60 border border-white/5 rounded-lg text-[10px] text-slate-550 italic">
-                        Our Mbabane compliance officer is verifying tax letters. Review status can be speed-approved inside the Admin console in seconds.
+                        Our Manzini compliance officer is verifying tax letters. Review status can be speed-approved inside the Admin console in seconds.
                       </div>
                     )}
 

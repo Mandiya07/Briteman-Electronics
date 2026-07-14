@@ -108,7 +108,7 @@ export default function CartDrawer({
           <p className="font-bold text-slate-700 dark:text-slate-350">FNB Eswatini Corporate Account Details</p>
           <p>Account Name: Briteman Services Ltd</p>
           <p>Account Number: 62451294821</p>
-          <p>Branch Code: 280164 (Mbabane Central)</p>
+          <p>Branch Code: 280164 (Manzini Central)</p>
           <p className="font-semibold text-accent">Use order number as reference</p>
         </div>
       );
@@ -161,7 +161,7 @@ export default function CartDrawer({
     }
     return (
       <div className="text-[11px] text-slate-400 mt-2 text-left">
-        🏡 Bring cash directly to Unit 10, Somhlolo Road, Mbabane showroom context during office pick-up.
+        🏡 Bring cash directly to Unit 10, The Hub, Manzini showroom context during office pick-up.
       </div>
     );
   };
@@ -377,7 +377,7 @@ export default function CartDrawer({
                   id="checkout-address"
                   required
                   rows={2}
-                  placeholder="Street / Office location code, e.g. Lilunga House block, Somhlolo Road, Mbabane"
+                  placeholder="Street / Office location code, e.g. Lilunga House block, The Hub, Manzini"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   className="w-full p-2.5 bg-slate-50 dark:bg-slate-900 border dark:border-slate-800 text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-xs"
@@ -396,7 +396,7 @@ export default function CartDrawer({
                   <option value="Mobile Money (MTN MoMo)">MTN Mobile Money Wallet</option>
                   <option value="Bank Transfer (EFT)">FNB Bank EFT Transfer</option>
                   <option value="Credit / Debit Card Payment">Credit / Debit Card (Visa/Mastercard)</option>
-                  <option value="Cash on Pickup">Cash Payment on Pickup in Mbabane</option>
+                  <option value="Cash on Pickup">Cash Payment on Pickup in Manzini</option>
                 </select>
                 
                 {/* Dynamically render billing coordinates */}
@@ -448,7 +448,7 @@ export default function CartDrawer({
             </div>
 
             <p className="text-xs text-slate-500 leading-normal max-w-xs mx-auto">
-              Wonderful! Thank you for supporting <b>Briteman Services</b>. Our logistics couriers will gather items from the Somhlolo Road database and prep dispatch within 30 minutes.
+              Wonderful! Thank you for supporting <b>Briteman Services</b>. Our logistics couriers will gather items from the The Hub database and prep dispatch within 30 minutes.
             </p>
 
             <button

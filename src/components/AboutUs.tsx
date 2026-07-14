@@ -3,7 +3,7 @@ import { Target, Eye, ShieldCheck, Heart, Landmark, MapPin, Clock, Award, Sparkl
 
 export default function AboutUs() {
   const milestones = [
-    { year: "2018", title: "Inception in Mbabane", desc: "Started as a small computer maintenance and laptop trading retail stall. Set up shop next to Somhlolo Road." },
+    { year: "2018", title: "Inception in Manzini", desc: "Started as a small computer maintenance and laptop trading retail stall. Set up shop next to The Hub." },
     { year: "2021", title: "Wholesale Expansion", desc: "Certified as direct resellers for HP and Dell, initiating volume technology supplies to colleges and government institutions." },
     { year: "2024", title: "Printer & UPS Division", desc: "Formed dedicated divisions for battery backups (APC UPS) and multi-function ink-tank systems (Epson, Canon)." },
     { year: "2026", title: "Smart E-Commerce Portal", desc: "Launched full digital shopping capabilities and AI product recommendations tailored to Eswatini specs." }
@@ -12,7 +12,7 @@ export default function AboutUs() {
   const values = [
     { icon: <ShieldCheck className="h-5 w-5 text-primary" />, label: "Genuine Guarantee", sub: "Only 100% factory original brand imports. No cheap clones, ever." },
     { icon: <Clock className="h-5 w-5 text-accent" />, label: "Reliable SLA Deliveries", sub: "Same day dispatch to Ezulwini, next-day to Matsapha and Manzini." },
-    { icon: <Award className="h-5 w-5 text-emerald-500" />, label: "Native Warranty Care", sub: "Full local exchange or repair processing directly in our Somhlolo Road clinic." },
+    { icon: <Award className="h-5 w-5 text-emerald-500" />, label: "Native Warranty Care", sub: "Full local exchange or repair processing directly in our The Hub clinic." },
     { icon: <Landmark className="h-5 w-5 text-indigo-500" />, label: "Government Trust", sub: "Fully registered tax compliance, official vendor numbers, and formal quotes." }
   ];
 
@@ -29,7 +29,7 @@ export default function AboutUs() {
           About Briteman Services
         </h2>
         <p className="text-sm text-slate-500 mt-2 max-w-2xl">
-          Eswatini's premium multi-channel electronics retailer and contract wholesaler, supplying computing excellence from Mbabane to all outer zones.
+          Eswatini's premium multi-channel electronics retailer and contract wholesaler, supplying computing excellence from Manzini to all outer zones.
         </p>
       </div>
 
@@ -42,10 +42,10 @@ export default function AboutUs() {
             Supplying Eswatini With Authentic, Grade-A Electronics Since 2018
           </h3>
           <p className="text-xs text-slate-500 leading-relaxed">
-            Founded with a single core mission—to bring world-class hardware standards to Mbabane shoppers—<b>Briteman Services</b> (branded to our clients as <b>Briteman Electronics</b>) has grown to become Eswatini's most trustworthy computer supply partner. 
+            Founded with a single core mission—to bring world-class hardware standards to Manzini shoppers—<b>Briteman Services</b> (branded to our clients as <b>Briteman Electronics</b>) has grown to become Eswatini's most trustworthy computer supply partner. 
           </p>
           <p className="text-xs text-slate-500 leading-relaxed">
-            By avoiding unreliable gray imports and maintaining absolute commercial transparency, we construct durable procurement channels for government agencies, private corporate suites, leading colleges, and local retail shoppers. Our highly trained Mbabane engineers inspect each device, certify brand new and premium pre-owned conditions, and setup customized software to ensure your office transitions seamlessly.
+            By avoiding unreliable gray imports and maintaining absolute commercial transparency, we construct durable procurement channels for government agencies, private corporate suites, leading colleges, and local retail shoppers. Our highly trained Manzini engineers inspect each device, certify brand new and premium pre-owned conditions, and setup customized software to ensure your office transitions seamlessly.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -74,19 +74,28 @@ export default function AboutUs() {
         {/* Info card right */}
         <div className="lg:col-span-5 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <h3 className="text-lg font-black text-slate-900 dark:text-white uppercase pb-3 border-b dark:border-slate-800">
-            Physical Mbabane Store Info
+            Physical Store Information
           </h3>
           
           <div className="space-y-4">
             <div className="flex items-start space-x-3 text-xs">
-              <MapPin className="h-5 w-5 text-primary shrink-0" />
-              <div>
-                <span className="font-bold text-slate-900 dark:text-white block">Main Headquarters:</span>
-                <span className="text-slate-500 block mt-1 leading-normal">
-                  LM Building Unit 10, Somhlolo Road,<br />
-                  Next to Lilunga House, SRIC Route, H100,<br />
-                  Mbabane, Eswatini
-                </span>
+              <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <div className="space-y-3">
+                <div>
+                  <span className="font-bold text-slate-900 dark:text-white block">Manzini Branch:</span>
+                  <span className="text-slate-500 block mt-0.5 leading-normal">
+                    P.O.BOX C1901, THE HUB<br />
+                    Manzini, Eswatini
+                  </span>
+                </div>
+                <div>
+                  <span className="font-bold text-slate-900 dark:text-white block">Mbabane Branch:</span>
+                  <span className="text-slate-500 block mt-0.5 leading-normal">
+                    LM Building Unit 10, Somhlolo Road<br />
+                    Next to Lilunga House, SRIC Route, H100<br />
+                    Mbabane, Eswatini
+                  </span>
+                </div>
               </div>
             </div>
 

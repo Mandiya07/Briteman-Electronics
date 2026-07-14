@@ -15,7 +15,7 @@ export default function Hero({ onTabChange }: HeroProps) {
     {
       icon: <Monitor className="h-6 w-6 text-accent" />,
       title: "Gaming & MacBooks",
-      desc: "High end performance specs, ASUS ROG rigs, plus M3 MacBooks with local Mbabane store warranties."
+      desc: "High end performance specs, ASUS ROG rigs, plus M3 MacBooks with local Manzini store warranties."
     },
     {
       icon: <FileText className="h-6 w-6 text-emerald-500" />,
@@ -26,7 +26,7 @@ export default function Hero({ onTabChange }: HeroProps) {
 
   const features = [
     { icon: <Award className="h-5 w-5 text-accent" />, label: "100% Genuine Products", sub: "Direct brand distribution" },
-    { icon: <ShieldCheck className="h-5 w-5 text-primary" />, label: "Local Mbabane Warranty", sub: "Immediate exchange support" },
+    { icon: <ShieldCheck className="h-5 w-5 text-primary" />, label: "Local Manzini Warranty", sub: "Immediate exchange support" },
     { icon: <Truck className="h-5 w-5 text-emerald-500" />, label: "Fast Eswatini Delivery", sub: "Straight to your doorstep" },
     { icon: <Landmark className="h-5 w-5 text-indigo-500" />, label: "Govt & School Supplies", sub: "Official procurement billing" }
   ];
@@ -111,7 +111,7 @@ export default function Hero({ onTabChange }: HeroProps) {
                 <span className="text-xs text-slate-400 uppercase tracking-widest">Wide Delivery</span>
               </div>
               <div>
-                <span className="block text-2xl font-black text-emerald-400">Mbabane</span>
+                <span className="block text-2xl font-black text-emerald-400">Manzini</span>
                 <span className="text-xs text-slate-400 uppercase tracking-widest">Physical Pickup</span>
               </div>
             </div>
@@ -158,7 +158,7 @@ export default function Hero({ onTabChange }: HeroProps) {
 
                 <div className="text-left space-y-2">
                   <h3 className="text-lg font-bold text-white">HP EliteBook 840 G8 Business Laptop</h3>
-                  <p className="text-xs text-slate-400">Core i7, 16GB RAM, 512GB NVMe SSD, 14" IPS Anti-Glare. Best choice for Mbabane corporate offices and University research.</p>
+                  <p className="text-xs text-slate-400">Core i7, 16GB RAM, 512GB NVMe SSD, 14" IPS Anti-Glare. Best choice for Manzini corporate offices and University research.</p>
                   
                   <div className="pt-2 flex justify-between items-center">
                     <span className="text-xs text-emerald-400 font-semibold">● 12 Units available for Immediate Pickup</span>

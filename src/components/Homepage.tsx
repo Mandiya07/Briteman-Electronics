@@ -146,19 +146,19 @@ export default function Homepage({
       try { return JSON.parse(saved); } catch (e) { /* fallback */ }
     }
     return [
-      { name: 'HP', desc: 'Enterprise Systems', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Hp_colored_svg_social-512.png' },
-      { name: 'Dell', desc: 'Secure Workstations', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Dell_colored_svg_social-512.png' },
-      { name: 'Lenovo', desc: 'ThinkPad Durability', logo: 'https://cdn.iconfinder.com/data/icons/social-media-auto-filled-lines-vol-2/434/lenovo-512.png' },
-      { name: 'Apple', desc: 'High-End Innovation', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Apple_colored_svg_social-512.png' },
-      { name: 'Acer', desc: 'Outstanding Value', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Acer_colored_svg_social-512.png' },
-      { name: 'Asus', desc: 'Gaming Powerhouses', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Asus_colored_svg_social-512.png' },
-      { name: 'Samsung', desc: 'Display & Mobile', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Samsung_colored_svg_social-512.png' },
-      { name: 'Canon', desc: 'Legendary Imaging', logo: 'https://cdn.iconfinder.com/data/icons/photo-video-color/64/camera-dslr-photography-lens-shutter-aperture-zoom-professional-equipment-technology-portable-photo-512.png' },
-      { name: 'Epson', desc: 'EcoTank Ink champions', logo: 'https://cdn.iconfinder.com/data/icons/academic-disciplines-color/64/art-design-technology-computer-electronics-printer-equipment-machine-office-stationery-utility-print-512.png' },
-      { name: 'Logitech', desc: 'Smart Peripherals', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Logitech_colored_svg_social-512.png' },
-      { name: 'Toshiba', desc: 'Reliable Compute', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Toshiba_colored_svg_social-512.png' },
-      { name: 'Seagate', desc: 'Dense Storage HDDs', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Seagate_colored_svg_social-512.png' },
-      { name: 'Western Digital', desc: 'High-Speed M.2 SSDs', logo: 'https://cdn.iconfinder.com/data/icons/social-media-2285/512/1_Western_Digital_colored_svg_social-512.png' }
+      { name: 'HP', desc: 'Enterprise Systems', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg' },
+      { name: 'Dell', desc: 'Secure Workstations', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Dell_logo_2016.svg' },
+      { name: 'Lenovo', desc: 'ThinkPad Durability', logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg' },
+      { name: 'Apple', desc: 'High-End Innovation', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg' },
+      { name: 'Acer', desc: 'Outstanding Value', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Acer_2011.svg' },
+      { name: 'Asus', desc: 'Gaming Powerhouses', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/ASUS_Logo.svg' },
+      { name: 'Samsung', desc: 'Display & Mobile', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg' },
+      { name: 'Canon', desc: 'Legendary Imaging', logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Canon_logo.svg' },
+      { name: 'Epson', desc: 'EcoTank Ink champions', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Epson_logo.svg' },
+      { name: 'Logitech', desc: 'Smart Peripherals', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Logitech_logo.svg' },
+      { name: 'Toshiba', desc: 'Reliable Compute', logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c5/Toshiba_logo.svg' },
+      { name: 'Seagate', desc: 'Dense Storage HDDs', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Seagate_Technology_logo.svg' },
+      { name: 'Western Digital', desc: 'High-Speed M.2 SSDs', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Western_Digital_logo.svg' }
     ];
   });
 
@@ -186,7 +186,7 @@ export default function Homepage({
     },
     {
       title: 'Competitive Retail Pricing',
-      desc: 'Optimized local taxation channels in Mbabane ensure direct factory savings passed down to final Swazi consumers.',
+      desc: 'Optimized local taxation channels in Manzini ensure direct factory savings passed down to final Swazi consumers.',
       icon: <BadgePercent className="h-5 w-5 text-[#FF6B00]" />
     },
     {
@@ -201,12 +201,12 @@ export default function Homepage({
     },
     {
       title: 'Expert Support Lab',
-      desc: 'Access certified computer technicians at our physical Somhlolo Road showroom for immediate setup queries.',
+      desc: 'Access certified computer technicians at our physical The Hub showroom for immediate setup queries.',
       icon: <HelpCircle className="h-5 w-5 text-[#8b5cf6]" />
     },
     {
       title: 'Local Store Warranty',
-      desc: 'Full local processing desk inside Mbabane showroom. Skip international package mailings completely.',
+      desc: 'Full local processing desk inside Manzini showroom. Skip international package mailings completely.',
       icon: <ShieldCheck className="h-5 w-5 text-blue-500" />
     },
     {
@@ -267,7 +267,7 @@ export default function Homepage({
 - Product Price: E${p.price.toLocaleString()}
 - SKU Identifier: ${p.sku}
 
-Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
+Please let me know if I can arrange pick-up at the The Hub showroom!`;
     return `https://wa.me/26876623733?text=${encodeURIComponent(text)}`;
   };
 
@@ -317,7 +317,7 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
               </h1>
 
               <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-light leading-relaxed">
-                Retail & Wholesale Supplier of Laptops, Computers, Printers, Gaming Consoles and Technology Accessories. Positioned on Somhlolo Road, Mbabane. High durability, local warranties.
+                Retail & Wholesale Supplier of Laptops, Computers, Printers, Gaming Consoles and Technology Accessories. Positioned on The Hub, Manzini. High durability, local warranties.
               </p>
 
               {/* Action Buttons required: Shop Products, Request Wholesale Quote, Contact Us */}
@@ -700,7 +700,7 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
         </div>
 
         {/* Brand visual tags list */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-5 mt-8">
           {BRANDS.map((b) => (
             <div
               id={`brand-tag-${b.name.toLowerCase()}`}
@@ -710,17 +710,17 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
                 onTabChange('shop');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-4 py-3.5 rounded-2xl flex flex-col justify-center items-center text-center cursor-pointer shadow-sm hover:border-[#FF6B00] hover:scale-103 transition-all duration-300 group"
+              className="bg-white border border-slate-200 px-4 py-6 rounded-2xl flex flex-col justify-center items-center text-center cursor-pointer shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:border-primary hover:-translate-y-1 transition-all duration-300 group"
             >
               {b.logo ? (
-                <div className="h-8 w-20 flex items-center justify-center mb-1">
-                  <img src={b.logo} alt={b.name} className="max-h-7 max-w-full object-contain" />
+                <div className="h-16 w-28 flex items-center justify-center mb-4 bg-white">
+                  <img src={b.logo} alt={b.name} className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-sm" />
                 </div>
               ) : null}
-              <span className="font-extrabold font-display leading-tight text-[#121212] dark:text-white text-base group-hover:text-[#FF6B00] uppercase tracking-wide">
+              <span className="font-extrabold font-display leading-tight text-slate-900 text-sm group-hover:text-primary uppercase tracking-wide">
                 {b.name}
               </span>
-              <span className="text-[9px] font-mono text-slate-400 font-medium group-hover:text-amber-500 mt-0.5">{b.desc}</span>
+              <span className="text-[10px] font-sans text-slate-500 font-medium group-hover:text-slate-700 mt-1.5">{b.desc}</span>
             </div>
           ))}
         </div>
@@ -736,7 +736,7 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
             <span className="text-[#FF6B00] text-xs font-mono font-bold tracking-widest uppercase block">Uncompromising Swazi Quality</span>
             <h2 className="text-3xl font-black uppercase mt-1 leading-tight tracking-tight">Why Eswatini Enterprises Rely On Briteman</h2>
             <p className="text-xs text-slate-450 mt-2 font-light leading-relaxed">
-              Serving the kingdom from Mbabane showroom, we construct highly durable, compliant computing and backup portfolios verified by international IT frameworks.
+              Serving the kingdom from Manzini showroom, we construct highly durable, compliant computing and backup portfolios verified by international IT frameworks.
             </p>
           </div>
 
@@ -867,7 +867,7 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
           <div className="text-center md:text-left mb-10 max-w-2xl">
             <span className="text-xs bg-[#0057D9]/10 text-[#0057D9] px-3 py-1 rounded-full font-bold uppercase tracking-wider font-mono">Kingdom-wide trust</span>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1.5 uppercase tracking-tight">Stories from Briteman Customers</h2>
-            <p className="text-xs text-slate-500 mt-1">Real ratings and stories from individuals, educational institutions, and businesses in Mbabane and Manzini.</p>
+            <p className="text-xs text-slate-500 mt-1">Real ratings and stories from individuals, educational institutions, and businesses in Manzini and Manzini.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -890,7 +890,7 @@ Please let me know if I can arrange pick-up at the Somhlolo Road showroom!`;
                 name: 'Thabo Mamba',
                 role: 'Student at Limkokwing University',
                 rating: 5,
-                text: 'As a graphics student, I needed a MacBook Air on severe budget limits. Briteman supplied me with a certified pre-owned M1 MacBook. It works flawlessly and includes half a year of local Mbabane warranty. Absolutely incredible store!',
+                text: 'As a graphics student, I needed a MacBook Air on severe budget limits. Briteman supplied me with a certified pre-owned M1 MacBook. It works flawlessly and includes half a year of local Manzini warranty. Absolutely incredible store!',
                 desc: 'Retail Student shopper'
               }
             ].map((testi, idx) => (

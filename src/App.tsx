@@ -515,12 +515,13 @@ export default function App() {
             <div className="inline-block bg-white/5 p-2 rounded-2xl">
               <Logo />
             </div>
-            <p className="text-slate-400 text-xs leading-relaxed max-w-xs">
-              Eswatini's premium technology retail partner positioned in somhlolo route, Mbabane. HP original notebooks, Canon printers, load-shedding backup kits, and school procurement ledgers.
+            <p className="text-slate-400 text-[10px] leading-relaxed max-w-xs font-bold">
+              AJAPRE INVESTMENTS PTY LTD T/A BRITEMAN SERVICES
             </p>
             <div className="text-xs space-y-1 text-slate-455 font-mono">
-              <p>Hotline: +268 7662 3733</p>
-              <p>Showroom: +268 3450 1703</p>
+              <p>IG: @Britemanelectronics</p>
+              <p>FB: Briteman Services</p>
+              <p>Email: ajapresd@gmail.com</p>
             </div>
           </div>
 
@@ -555,15 +556,23 @@ export default function App() {
           </div>
 
           <div className="space-y-4 text-xs">
-            <h4 className="font-black text-slate-200 uppercase tracking-widest">Certified Showroom</h4>
-            <p className="text-slate-400 leading-relaxed text-[11px]">
-              LM Building Unit 10, Somhlolo Road,<br />
-              Next to Lilunga House, SRIC Route,<br />
-              Mbabane, Eswatini
-            </p>
+            <h4 className="font-black text-slate-200 uppercase tracking-widest">Certified Showrooms</h4>
+            <div className="text-slate-400 leading-relaxed text-[11px] space-y-2">
+              <p>
+                <b>Manzini Branch:</b><br />
+                P.O.BOX C1901, THE HUB<br />
+                Manzini, Eswatini
+              </p>
+              <p>
+                <b>Mbabane Branch:</b><br />
+                LM Building Unit 10, Somhlolo Road<br />
+                Next to Lilunga House. SRIC Route, H100<br />
+                Mbabane, Eswatini
+              </p>
+            </div>
             <div className="pt-2 border-t border-slate-800 text-[10px] text-slate-400">
-              🕒 Mon-Fri: 08:00 AM - 05:00 PM<br />
-              🕒 Saturday: 08:30 AM - 01:00 PM
+              📞 +268 3450 1703<br />
+              📱 +268 7662 3733 / 7976 2221
             </div>
           </div>
 

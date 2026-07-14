@@ -247,7 +247,7 @@ export default function AdminDashboard({
   const [prodBrand, setProdBrand] = useState('HP');
   const [prodStock, setProdStock] = useState(12);
   const [prodImage, setProdImage] = useState('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=800');
-  const [prodDesc, setProdDesc] = useState('Enterprise specification machine with robust warranty support in Mbabane.');
+  const [prodDesc, setProdDesc] = useState('Enterprise specification machine with robust warranty support in Manzini.');
 
   // Analytics projection mock data
   const data = [
@@ -1319,7 +1319,7 @@ export default function AdminDashboard({
           <div>
             <span className="text-xs font-black text-emerald-500 uppercase tracking-widest block font-mono">🏢 COMPANY DETAILS & LOCATION COMMAND</span>
             <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight mt-1">
-              Edit Mbabane Showroom & Contact Information
+              Edit Manzini Showroom & Contact Information
             </h3>
             <p className="text-xs text-slate-400 mt-1">
               Update phone numbers, physical address, support email, and operating hours. Changes apply instantly across the Contact Us page and footer headers.

@@ -65,9 +65,12 @@ export default function Navigation({
           <span className="font-semibold text-accent">🔥 Back-to-School Specials: </span> 
           Get premium student laptop bundles up to 15% discount!
         </div>
-        <div className="hidden md:flex space-x-6">
-          <span>📍 LM Building Unit 10, Somhlolo Road, Mbabane</span>
-          <span className="font-semibold">📞 +268 7662 3733</span>
+        <div className="hidden md:flex space-x-6 text-[10px]">
+          <span className="flex flex-col text-left">
+            <span>📍 P.O.BOX C1901, THE HUB, MANZINI.</span>
+            <span>📍 LM BLDG UNIT 10, SOMHLOLO RD, MBABANE.</span>
+          </span>
+          <span className="font-semibold self-center">📞 +268 3450 1703</span>
         </div>
       </div>
 

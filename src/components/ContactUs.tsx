@@ -14,7 +14,7 @@ export default function ContactUs() {
   const [mapMode, setMapMode] = useState<'blueprint' | 'satellite' | 'streets'>('blueprint');
   const [activePin, setActivePin] = useState<string | null>('briteman');
   const [showDirections, setShowDirections] = useState(false);
-  const [selectedOrigin, setSelectedOrigin] = useState('Mbabane CBD (Swazi Plaza)');
+  const [selectedOrigin, setSelectedOrigin] = useState('Manzini CBD (Swazi Plaza)');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,8 +32,8 @@ export default function ContactUs() {
     {
       icon: <Phone className="h-5 w-5 text-primary" />,
       label: "Phone Contact Lines",
-      val1: "+268 3450 1703 (Mbabane desk)",
-      val2: "+268 7662 3733 (Hotline / WhatsApp)",
+      val1: "+268 3450 1703 (Showroom desk)",
+      val2: "+268 7662 3733 / 7976 2221 (Mobile)",
       sub: "Available during operating schedules"
     },
     {
@@ -45,9 +45,16 @@ export default function ContactUs() {
     },
     {
       icon: <MapPin className="h-5 w-5 text-emerald-500" />,
-      label: "Physical Address Location",
+      label: "Manzini Branch",
+      val1: "P.O.BOX C1901, THE HUB",
+      val2: "Manzini",
+      sub: "Eswatini"
+    },
+    {
+      icon: <MapPin className="h-5 w-5 text-emerald-500" />,
+      label: "Mbabane Branch",
       val1: "LM Building Unit 10, Somhlolo Road",
-      val2: "Next to Lilunga House, SRIC Route, H100",
+      val2: "Next to Lilunga House, SRIC Route",
       sub: "Mbabane, Eswatini"
     }
   ];
@@ -56,23 +63,23 @@ export default function ContactUs() {
     {
       id: 'briteman',
       title: 'Briteman Electronics Showroom',
-      desc: 'Unit 10, LM Building, Somhlolo Road. Main computer & printer store.',
+      desc: 'The Hub, Manzini. Main computer & printer store.',
       coords: { top: '50%', left: '50%' },
       badge: 'HQ Store',
       color: 'bg-primary text-white'
     },
     {
       id: 'lilunga',
-      title: 'Lilunga House',
-      desc: 'Major corporate landmark along SRIC Route, Mbabane.',
+      title: 'Manzini Central',
+      desc: 'Major corporate landmark in Manzini.',
       coords: { top: '28%', left: '72%' },
       badge: 'Landmark',
       color: 'bg-amber-500 text-white'
     },
     {
       id: 'sric',
-      title: 'SRIC Head Offices',
-      desc: 'Eswatini Royal Insurance Corporation complex.',
+      title: 'Commercial Hub',
+      desc: 'Central commercial area.',
       coords: { top: '70%', left: '25%' },
       badge: 'Landmark',
       color: 'bg-indigo-600 text-white'
@@ -80,33 +87,33 @@ export default function ContactUs() {
   ];
 
   const directionsMap: Record<string, { time: string; distance: string; steps: string[] }> = {
-    'Mbabane CBD (Swazi Plaza)': {
-      time: '4 mins drive (1.8 km)',
-      distance: '1.8 km',
+    'Manzini CBD': {
+      time: '35 mins drive (40 km)',
+      distance: '40 km',
       steps: [
-        'Head northeast from Swazi Plaza toward Somhlolo Road',
-        'Continue straight past Independence roundabout onto Somhlolo Rd',
-        'Pass Lilunga House on your right',
-        'Arrive at LM Building Unit 10 (Briteman Electronics)'
+        'Head southeast on MR3 toward Manzini',
+        'Enter Manzini city center',
+        'Head toward The Hub shopping complex',
+        'Arrive at Briteman Electronics'
       ]
     },
     'Ezulwini Valley (Corner Plaza)': {
-      time: '12 mins drive (11.4 km)',
-      distance: '11.4 km',
+      time: '25 mins drive (25 km)',
+      distance: '25 km',
       steps: [
-        'Take MR3 highway northbound toward Mbabane',
-        'Take the Mbabane city exit onto Somhlolo Road',
-        'Continue down Somhlolo Road past SRIC head offices',
-        'Briteman Electronics is on your left at LM Building Unit 10'
+        'Take MR3 highway southbound toward Manzini',
+        'Enter Manzini city center',
+        'Navigate to The Hub',
+        'Briteman Electronics is located inside'
       ]
     },
     'Manzini Bus Rank': {
       time: '28 mins drive (32.5 km)',
       distance: '32.5 km',
       steps: [
-        'Join MR3 highway west toward Mbabane',
+        'Join MR3 highway west toward Manzini',
         'Proceed through Mahwalala / Ezulwini toll corridor',
-        'Enter Mbabane via Somhlolo Road intersection',
+        'Enter Manzini via The Hub intersection',
         'Unit 10 LM Building is located right next to Lilunga House'
       ]
     }
@@ -118,7 +125,7 @@ export default function ContactUs() {
       {/* Title */}
       <div className="text-left mb-12">
         <h2 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight">
-          Connect With Our Mbabane Store Team
+          Connect With Our Store Team
         </h2>
         <p className="text-sm text-slate-500 mt-2 max-w-2xl">
           Have questions about specific configurations, printer drivers, bulk wholesale registry, or delivery times? Send us a ticket or drop by our showroom.
@@ -151,7 +158,7 @@ export default function ContactUs() {
             <div className="flex justify-between items-center text-xs">
               <span className="font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center space-x-1.5">
                 <Compass className="h-4 w-4 text-accent animate-spin" style={{ animationDuration: '10s' }} />
-                <span>Interactive Mbabane Map</span>
+                <span>Interactive Manzini Map</span>
               </span>
               <div className="flex items-center space-x-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
                 <button
@@ -185,7 +192,7 @@ export default function ContactUs() {
                 <div className={`absolute inset-x-0 h-6 top-1/3 transform -rotate-3 transition-colors ${
                   mapMode === 'satellite' ? 'bg-slate-900/80 border-y border-emerald-500/20' : 'bg-slate-250 dark:bg-slate-850'
                 }`}>
-                  <span className="text-[9px] font-mono text-slate-400 px-3 uppercase tracking-widest">Somhlolo Road (H100)</span>
+                  <span className="text-[9px] font-mono text-slate-400 px-3 uppercase tracking-widest">The Hub (H100)</span>
                 </div>
 
                 <div className={`absolute inset-y-0 w-6 left-1/3 transform -rotate-12 transition-colors ${
@@ -263,7 +270,7 @@ export default function ContactUs() {
                   <Navigation className="h-4 w-4 text-primary" />
                   <span>Route Navigation & Directions Planner</span>
                 </span>
-                <span className="font-mono text-[10px] text-accent">Mbabane H100</span>
+                <span className="font-mono text-[10px] text-accent">Manzini H100</span>
               </button>
 
               {showDirections && (
@@ -294,7 +301,7 @@ export default function ContactUs() {
                   </div>
 
                   <a
-                    href="https://maps.google.com/?q=Somhlolo+Road,+Mbabane,+Eswatini"
+                    href="https://maps.google.com/?q=The Hub+Road,+Manzini,+Eswatini"
                     target="_blank"
                     rel="noreferrer"
                     className="w-full bg-primary hover:bg-primary-hover text-white py-2 rounded-xl font-bold text-center flex items-center justify-center space-x-1.5 transition shadow"

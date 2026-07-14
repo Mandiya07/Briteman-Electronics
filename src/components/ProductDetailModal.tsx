@@ -109,7 +109,7 @@ export default function ProductDetailModal({
   const angleStartRef = useRef(180);
 
   // Delivery calculator variables
-  const [selectedCity, setSelectedCity] = useState('Mbabane (Pickup)');
+  const [selectedCity, setSelectedCity] = useState('Manzini (Pickup)');
   const [shippingFee, setShippingFee] = useState(0);
 
   // Bulk calculator states
@@ -128,8 +128,8 @@ export default function ProductDetailModal({
   const [generatedQuoteDetails, setGeneratedQuoteDetails] = useState<any | null>(null);
 
   const ESWATINI_CITIES = [
-    { name: 'Mbabane (Pickup)', fee: 0, time: 'Immediate' },
-    { name: 'Mbabane Central / Sidwashini Delivery', fee: 50, time: 'Same Day' },
+    { name: 'Manzini (Pickup)', fee: 0, time: 'Immediate' },
+    { name: 'Manzini Central / Sidwashini Delivery', fee: 50, time: 'Same Day' },
     { name: 'Ezulwini Valley', fee: 100, time: 'Same Day' },
     { name: 'Matsapha Industrial Area', fee: 120, time: 'Next Day' },
     { name: 'Manzini Town', fee: 150, time: 'Next Day' },
@@ -296,7 +296,7 @@ Please confirm showroom stock availability.`)}`;
 *Specification Request:*
 - ${q.qty} x ${q.productName}
 - Model SKU: ${q.sku}
-${q.addons.os ? '- Custom pre-installed Windows 11 Enterprise (E280/ea)\n' : ''}${q.addons.accessories ? '- Bundled genuine heavy-duty carry bags (E350/ea)\n' : ''}${q.addons.warranty ? '- Extended 3-Year Somhlolo Diagnostic warranty (E650/ea)\n' : ''}
+${q.addons.os ? '- Custom pre-installed Windows 11 Enterprise (E280/ea)\n' : ''}${q.addons.accessories ? '- Bundled genuine heavy-duty carry bags (E350/ea)\n' : ''}${q.addons.warranty ? '- Extended 3-Year The Hub Diagnostic warranty (E650/ea)\n' : ''}
 *Financial Calculation:*
 • Base Unit Price: E${q.financials.originalUnitPrice.toLocaleString()}
 • Tier Special Discount: ${q.financials.discountPercent}% Off
@@ -505,11 +505,11 @@ _Please send a signed purchase order or voucher to initiate commercial logistics
 
               {/* Warranties highlights */}
               <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border dark:border-slate-800 space-y-3">
-                <span className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider block font-mono">Somhlolo Authorized Local Warranties</span>
+                <span className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider block font-mono">The Hub Authorized Local Warranties</span>
                 <div className="space-y-2 text-xs">
                   <div className="flex items-center space-x-2 text-slate-650 dark:text-slate-350">
                     <ShieldCheck className="h-4 w-4 text-emerald-500 font-bold shrink-0" />
-                    <span>In-Store Support Center on Somhlolo Road, Mbabane.</span>
+                    <span>In-Store Support Center on The Hub, Manzini.</span>
                   </div>
                   <div className="flex items-center space-x-2 text-slate-650 dark:text-slate-350">
                     <CheckCircle2 className="h-4 w-4 text-emerald-500 font-bold shrink-0" />
@@ -741,7 +741,7 @@ _Please send a signed purchase order or voucher to initiate commercial logistics
                               <input
                                 id="quote-company-name"
                                 type="text"
-                                placeholder="e.g. Mbabane Central High School"
+                                placeholder="e.g. Manzini Central High School"
                                 required
                                 value={formCompany}
                                 onChange={(e) => setFormCompany(e.target.value)}
@@ -839,7 +839,7 @@ _Please send a signed purchase order or voucher to initiate commercial logistics
                               />
                               <div>
                                 <span className="font-bold block text-white text-[11px]">3-Year Extension (+E650/unit)</span>
-                                <span className="text-[9px] text-slate-450 block">Somhlolo diagnostic physical coverage</span>
+                                <span className="text-[9px] text-slate-450 block">The Hub diagnostic physical coverage</span>
                               </div>
                             </label>
 
@@ -877,7 +877,7 @@ _Please send a signed purchase order or voucher to initiate commercial logistics
                           <div>
                             <span className="text-[10px] bg-primary text-white font-mono px-2 py-0.5 rounded font-black max-w-[120px] block text-center">OFFICIAL QUOTE</span>
                             <h4 className="font-black text-sm text-slate-900 mt-1">BRITEMAN COMMERCIAL ELECTRONICS</h4>
-                            <p className="text-[10px] text-slate-500">Lot 14 Somhlolo Road, Mbabane, Eswatini • +268 3450 1703</p>
+                            <p className="text-[10px] text-slate-500">Lot 14 The Hub, Manzini, Eswatini • +268 3450 1703</p>
                           </div>
                           <div className="text-right text-xs">
                             <p className="font-mono text-[11px] font-bold text-accent">Ref: {generatedQuoteDetails.serial}</p>

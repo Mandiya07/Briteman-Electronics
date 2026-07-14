@@ -55,7 +55,7 @@ export default function AiAssistant({
       }
 
       const data = await resp.json();
-      const botResponse = data.text || data.recommendation || "I searched the catalog, but something went wrong. Let me assist you directly: Please phone our Somhlolo Road showroom at +268 7662 3733!";
+      const botResponse = data.text || data.recommendation || "I searched the catalog, but something went wrong. Let me assist you directly: Please phone our The Hub showroom at +268 7662 3733!";
       
       // Auto-extract recommendations from keywords in the text
       const matchingItems: Product[] = [];
@@ -112,7 +112,7 @@ export default function AiAssistant({
               <span>Briteman Silicon AI Specialist</span>
               <Sparkles className="h-4.3 w-4.3 text-accent animate-pulse" />
             </h2>
-            <p className="text-[11px] text-slate-400">Grounded catalog assistant connected directly to Somhlolo Warehouse Stock.</p>
+            <p className="text-[11px] text-slate-400">Grounded catalog assistant connected directly to The Hub Warehouse Stock.</p>
           </div>
         </div>
 

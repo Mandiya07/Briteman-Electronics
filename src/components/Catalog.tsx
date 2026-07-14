@@ -256,7 +256,7 @@ export default function Catalog({
 *Price:* E${p.price.toLocaleString()}
 *Condition:* ${p.condition}
 
-Please let me know if this is currently available in Mbabane showroom. Thanks!`;
+Please let me know if this is currently available in Manzini showroom. Thanks!`;
     return `https://wa.me/26876623733?text=${encodeURIComponent(baseMessage)}`;
   };
 
@@ -270,7 +270,7 @@ Please let me know if this is currently available in Mbabane showroom. Thanks!`;
       {/* Title Header Section */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-white dark:bg-dark-card border border-slate-150 dark:border-slate-800 p-6 rounded-3xl shadow-sm text-left">
         <div>
-          <span className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase tracking-wider font-mono">SOMHLOLO ROAD MBABANE STOCKLIST</span>
+          <span className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase tracking-wider font-mono">BRITEMAN SERVICES STOCKLIST</span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight mt-1.5">
             Institutional Electronics Database
           </h2>
